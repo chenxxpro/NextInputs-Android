@@ -1,0 +1,42 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:3.1.1"
+    }
+}
+
+repositories {
+    maven {
+        url 'https://dl.bintray.com/yoojia/maven'
+    }
+    jcenter()
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.github.yoojia:next-inputs:1.0-beta'
+}
+
+apply from: 'https://raw.githubusercontent.com/yoojia/Gradles/master/android.gradle'
