@@ -10,7 +10,7 @@ import android.widget.ToggleButton;
 
 /**
  * Inputs tool for Android widgets
- * @author 陈永佳 (chengyongjia@parkingwang.com)
+ * @author 陈小锅 (yoojia.chen@gmail.com)
  * @since 1.0
  */
 public class Inputs {
