@@ -16,7 +16,7 @@ public class TextInput<T extends TextView> implements Input{
     }
 
     @Override
-    public String onLoadValue() {
+    public String getValue() {
         return String.valueOf(inputView.getText());
     }
 

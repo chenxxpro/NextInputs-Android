@@ -37,8 +37,7 @@ public class Inputs {
 
     public static Input ratingBar(final RatingBar ratingBar) {
         return new Input() {
-            @Override
-            public String onLoadValue() {
+            @Override public String getValue() {
                 return String.valueOf(ratingBar.getRating());
             }
         };
@@ -46,8 +45,7 @@ public class Inputs {
 
     public static Input checkable(final CompoundButton checkable) {
         return new Input() {
-            @Override
-            public String onLoadValue() {
+            @Override public String getValue() {
                 return String.valueOf(checkable.isChecked());
             }
         };

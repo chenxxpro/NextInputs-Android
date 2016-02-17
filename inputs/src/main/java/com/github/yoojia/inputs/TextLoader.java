@@ -6,7 +6,7 @@ import android.widget.TextView;
 /**
  * @author 陈小锅 (yoojia.chen@gmail.com)
  */
-public class TextLoader implements Loader<String> {
+public class TextLoader implements LazyLoader<String> {
 
     private final TextView mInput;
 
@@ -15,7 +15,7 @@ public class TextLoader implements Loader<String> {
     }
 
     @Override
-    public String onLoadValue() {
+    public String getValue() {
         return mInput.getText().toString();
     }
 
