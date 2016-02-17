@@ -6,11 +6,11 @@ import android.widget.TextView;
 /**
  * @author 陈小锅 (yoojia.chen@gmail.com)
  */
-public class TextLoader implements LazyLoader<String> {
+public class TextLazyLoader implements LazyLoader<String> {
 
     private final TextView mInput;
 
-    public TextLoader(TextView input) {
+    public TextLazyLoader(TextView input) {
         mInput = input;
     }
 
@@ -19,11 +19,11 @@ public class TextLoader implements LazyLoader<String> {
         return mInput.getText().toString();
     }
 
-    public static TextLoader textView(TextView textView){
-        return new TextLoader(textView);
+    public static TextLazyLoader textView(TextView textView){
+        return new TextLazyLoader(textView);
     }
 
-    public static TextLoader editText(EditText editText) {
+    public static TextLazyLoader editText(EditText editText) {
         return textView(editText);
     }
 }

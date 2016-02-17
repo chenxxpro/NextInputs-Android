@@ -15,15 +15,15 @@ import android.widget.ToggleButton;
  * @author 陈小锅 (yoojia.chen@gmail.com)
  * @since 1.0
  */
-public class FormInput {
+public class InputsFinder {
     
     private final View mFormView;
 
-    public FormInput(View formView) {
+    public InputsFinder(View formView) {
         mFormView = formView;
     }
 
-    public FormInput(Activity activity) {
+    public InputsFinder(Activity activity) {
         this(activity.getWindow().getDecorView());
     }
 
