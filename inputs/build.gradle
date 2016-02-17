@@ -22,11 +22,14 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 1
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
     }
+
+    lintOptions {
+        abortOnError false
+    }
+
     buildTypes {
         release {
             minifyEnabled false
