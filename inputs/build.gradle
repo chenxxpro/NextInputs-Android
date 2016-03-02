@@ -9,9 +9,6 @@ buildscript {
 }
 
 repositories {
-    maven {
-        url 'https://dl.bintray.com/yoojia/maven'
-    }
     jcenter()
 }
 
@@ -42,4 +39,4 @@ dependencies {
     compile 'com.github.yoojia:next-inputs:1.1-beta'
 }
 
-apply from: 'https://raw.githubusercontent.com/yoojia/Gradles/master/android.gradle'
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
