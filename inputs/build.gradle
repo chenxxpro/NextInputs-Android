@@ -39,5 +39,5 @@ dependencies {
     compile 'com.github.yoojia:next-inputs:1.2'
 }
 
-apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
+//apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
 apply from: 'https://raw.githubusercontent.com/yoojia/Gradles/master/android.gradle'
