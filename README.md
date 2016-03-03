@@ -12,9 +12,21 @@
 
 ```java
 AndroidNextInputs inputs = new AndroidNextInputs();
-InputsFinder formFinder = new InputsFinder(this);
-inputs.add(formFinder.findEditText(R.id.form_field_1), StaticPattern.Required(), StaticPattern.ChineseMobile());
+InputsFinder finder = new InputsFinder(this);
+
+// 流式API
+inputs  // 必选，手机号
+        .on(finder.editText(R.id.form_field_1))
+        .with(StaticPattern.Required(), StaticPattern.ChineseMobile())
+        // 信用卡
+        .on(finder.editText(R.id.form_field_2))
+        .with(StaticPattern.BlankCard());
+
+// 标准API
+inputs.add(finder.editText(R.id.form_field_3), StaticPattern.Required(), StaticPattern.ChineseMobile());
+// 执行校验，并返回校验结果
 boolean passed = inputs.test();
+
 ```
 
 # Android扩展
@@ -33,16 +45,21 @@ dependencies {
 }
 ```
 
-当前最新版本为 `1.1-beta`：
+当前最新版本为 `1.2`：
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs-android:1.1-beta'
+    compile 'com.github.yoojia:next-inputs-android:1.2'
 }
 ```
 ----
 
 # Change Log
+
+### 1.2
+
+- 增加流式API支持；
+- InputsFinder的方法名去除find前缀；
 
 ### 1.1
 

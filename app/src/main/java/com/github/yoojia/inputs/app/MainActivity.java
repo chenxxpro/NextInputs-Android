@@ -21,36 +21,40 @@ public class MainActivity extends AppCompatActivity {
         final AndroidNextInputs inputs = new AndroidNextInputs();
         final InputsFinder finder = new InputsFinder(this);
         final LazyLoaders loader = new LazyLoaders(this);
-        // 必选，手机号
-        inputs.add(finder.findEditText(R.id.form_field_1), StaticPattern.Required(), StaticPattern.ChineseMobile());
-        // 信用卡
-        inputs.add(finder.findEditText(R.id.form_field_2), StaticPattern.BlankCard());
+        // 一、流式API
+        inputs  // 必选，手机号
+                .on(finder.editText(R.id.form_field_1))
+                .with(StaticPattern.Required(), StaticPattern.ChineseMobile())
+                // 信用卡
+                .on(finder.editText(R.id.form_field_2))
+                .with(StaticPattern.BlankCard());
+        // 二、标准API
         // 必选，数字，最大20字符
-        inputs.add(finder.findEditText(R.id.form_field_3), StaticPattern.Required(), StaticPattern.Digits(), ValuePattern.MaxLength(20));
+        inputs.add(finder.editText(R.id.form_field_3), StaticPattern.Required(), StaticPattern.Digits(), ValuePattern.MaxLength(20));
         // 必选，邮件
-        inputs.add(finder.findEditText(R.id.form_field_4), StaticPattern.Required(), StaticPattern.Email());
+        inputs.add(finder.editText(R.id.form_field_4), StaticPattern.Required(), StaticPattern.Email());
         // 必选，与邮件相同
-        inputs.add(finder.findEditText(R.id.form_field_5), ValuePattern.Required(), ValuePattern.EqualsTo(loader.fromEditText(R.id.form_field_4)));
+        inputs.add(finder.editText(R.id.form_field_5), ValuePattern.Required(), ValuePattern.EqualsTo(loader.fromEditText(R.id.form_field_4)));
         // Host
-        inputs.add(finder.findEditText(R.id.form_field_6), StaticPattern.Host());
+        inputs.add(finder.editText(R.id.form_field_6), StaticPattern.Host());
         // URL
-        inputs.add(finder.findEditText(R.id.form_field_6), StaticPattern.URL());
+        inputs.add(finder.editText(R.id.form_field_6), StaticPattern.URL());
         // MaxLength
-        inputs.add(finder.findEditText(R.id.form_field_7), ValuePattern.MaxLength(5));
+        inputs.add(finder.editText(R.id.form_field_7), ValuePattern.MaxLength(5));
         // MinLength
-        inputs.add(finder.findEditText(R.id.form_field_8), ValuePattern.MinLength(4));
+        inputs.add(finder.editText(R.id.form_field_8), ValuePattern.MinLength(4));
         // RangeLength
-        inputs.add(finder.findEditText(R.id.form_field_9), ValuePattern.RangeLength(4, 8));
+        inputs.add(finder.editText(R.id.form_field_9), ValuePattern.RangeLength(4, 8));
         // Not Blank
-        inputs.add(finder.findEditText(R.id.form_field_10), StaticPattern.NotBlank());
+        inputs.add(finder.editText(R.id.form_field_10), StaticPattern.NotBlank());
         // Numeric
-        inputs.add(finder.findEditText(R.id.form_field_11), StaticPattern.Numeric());
+        inputs.add(finder.editText(R.id.form_field_11), StaticPattern.Numeric());
         // MaxValue
-        inputs.add(finder.findEditText(R.id.form_field_12), ValuePattern.MaxValue(100));
+        inputs.add(finder.editText(R.id.form_field_12), ValuePattern.MaxValue(100));
         // MinValue
-        inputs.add(finder.findEditText(R.id.form_field_13), ValuePattern.MinValue(20));
+        inputs.add(finder.editText(R.id.form_field_13), ValuePattern.MinValue(20));
         // RangeValue
-        inputs.add(finder.findEditText(R.id.form_field_14), ValuePattern.RangeValue(18, 30));
+        inputs.add(finder.editText(R.id.form_field_14), ValuePattern.RangeValue(18, 30));
 
 
         final Button submit = (Button) findViewById(R.id.form_commit);

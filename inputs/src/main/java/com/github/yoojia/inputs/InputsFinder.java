@@ -27,31 +27,31 @@ public class InputsFinder {
         this(activity.getWindow().getDecorView());
     }
 
-    public TextInput<TextView> findTextView(int viewId){
+    public TextInput<TextView> textView(int viewId){
         return Inputs.textView((TextView) mFormView.findViewById(viewId));
     }
 
-    public TextInput<EditText> findEditText(int viewId) {
+    public TextInput<EditText> editText(int viewId) {
         return Inputs.editText((EditText) mFormView.findViewById(viewId));
     }
 
-    public Input findRadioButton(int viewId) {
+    public Input radioButton(int viewId) {
         return Inputs.radioButton((RadioButton) mFormView.findViewById(viewId));
     }
 
-    public Input findCheckBox(int viewId) {
+    public Input checkBox(int viewId) {
         return Inputs.checkBox((CheckBox) mFormView.findViewById(viewId));
     }
 
-    public Input findToggleButton(int viewId) {
+    public Input toggleButton(int viewId) {
         return Inputs.toggleButton((ToggleButton) mFormView.findViewById(viewId));
     }
 
-    public Input findRatingBar(int viewId) {
+    public Input ratingBar(int viewId) {
         return Inputs.ratingBar((RatingBar) mFormView.findViewById(viewId));
     }
 
-    public Input findCheckable(int viewId) {
+    public Input checkable(int viewId) {
         return Inputs.checkable((CompoundButton) mFormView.findViewById(viewId));
     }
 }
