@@ -12,22 +12,22 @@
 
 ```java
 final AndroidNextInputs inputs = new AndroidNextInputs();
-final InputsFinder finder = new InputsFinder(this);
+final InputsAccess access = new InputsAccess(this);
 // 一、流式API
 inputs  // 必选，手机号
-        .on(finder.editText(R.id.form_field_1))
+        .on(access.findEditText(R.id.form_field_1))
         .with(StaticPattern.Required(), StaticPattern.ChineseMobile())
         // 信用卡
-        .on(finder.editText(R.id.form_field_2))
+        .on(access.findEditText(R.id.form_field_2))
         .with(StaticPattern.BlankCard());
 // 二、标准API
 // 必选，数字，最大20字符
-inputs.add(finder.editText(R.id.form_field_3), StaticPattern.Required(), StaticPattern.Digits(), ValuePattern.MaxLength(20));
+inputs.add(access.findEditText(R.id.form_field_3), StaticPattern.Required(), StaticPattern.Digits(), ValuePattern.MaxLength(20));
 // 必选，邮件
-inputs.add(finder.editText(R.id.form_field_4), StaticPattern.Required(), StaticPattern.Email());
+inputs.add(access.findEditText(R.id.form_field_4), StaticPattern.Required(), StaticPattern.Email());
 // 必选，与邮件相同
 final LazyLoaders loader = new LazyLoaders(this);
-inputs.add(finder.editText(R.id.form_field_5), ValuePattern.Required(), ValuePattern.EqualsTo(loader.fromEditText(R.id.form_field_4)));
+        inputs.add(access.findEditText(R.id.form_field_5), ValuePattern.Required(), ValuePattern.EqualsTo(loader.fromEditText(R.id.form_field_4)));
 // 执行校验，并返回校验结果
 boolean passed = inputs.test();
 
@@ -35,8 +35,19 @@ boolean passed = inputs.test();
 
 # Android扩展
 
-`AndroidNextInputs` 增加了Android支持，使用Android内置的TextView.setError()和Toast来展示校验失败的消息。
-`InputsFinder` 是一个为Android创建的扩展工具类，用于读取输入组件的数据，通过它可以快捷地读取布局文件中的EditText等组件。
+### AndroidMessageDisplay
+
+`AndroidNextInputs` 增加了Android支持，默认使用的AndroidMessageDisplay实现了Android内置组件的错误展示功能 ：使用TextView.setError()和Toast来展示校验失败的消息。
+
+### InputsAccess
+
+`InputsAccess` 是一个为Android创建的扩展工具类，用于读取输入组件的数据，通过它可以快捷地读取布局文件中的EditText等组件及其数据。
+
+- findXXX 等方法可用于快速查找各类型的View；
+- getXXX 等方法可快速读取各类型View的数值；
+
+### LazyLoaders
+
 `LazyLoaders` 是一个为Android创建的扩展工具类，用于延迟加载组件数据，通过它可以快捷地添加基于Android输入组件的延迟加载器。
 
 ----
@@ -65,7 +76,6 @@ dependencies {
 - AndroidNextInputs增加流式API支持，可用 on(...).with(...) 链式调用来设置校验目标和规则；
 - InputsFinder 更新为 InputsAccess ；
 - InputsAccess 增加 getInt / getLong / getFloat / getDouble等方法；
-- InputsFinder的方法名去除find前缀；
 
 ### 1.1
 
