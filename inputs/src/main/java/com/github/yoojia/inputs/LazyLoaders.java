@@ -30,4 +30,12 @@ public class LazyLoaders {
         return new TextLazyLoader((EditText) mFormView.findViewById(viewId));
     }
 
+    public static TextLazyLoader fromEditText(EditText view) {
+        return new TextLazyLoader(view);
+    }
+
+    public static TextLazyLoader fromTextView(TextView view) {
+        return new TextLazyLoader(view);
+    }
+
 }

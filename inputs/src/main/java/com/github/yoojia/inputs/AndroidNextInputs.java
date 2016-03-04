@@ -11,7 +11,4 @@ public class AndroidNextInputs extends NextInputs {
         setMessageDisplay(new AndroidMessageDisplay());
     }
 
-    public Fluent on(Input input){
-        return new Fluent(this, input);
-    }
 }

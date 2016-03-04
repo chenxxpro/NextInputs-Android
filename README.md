@@ -71,6 +71,11 @@ dependencies {
 
 # Change Log
 
+### 1.2.1
+
+- NextInputs 更新为 1.3 版本，移除Fluent，使用NextInputs的Fluent来实现流式API；
+- LazyLoaders 增加 fromEditText(EditText) 和 fromTextView(TextView) 方法；
+
 ### 1.2
 
 - AndroidNextInputs增加流式API支持，可用 on(...).with(...) 链式调用来设置校验目标和规则；
