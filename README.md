@@ -62,11 +62,11 @@ dependencies {
 }
 ```
 
-当前最新版本为 `1.2`：
+当前最新版本为 `1.2.2`：
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs-android:1.2'
+    compile 'com.github.yoojia:next-inputs-android:1.2.2'
 }
 ```
 ----
