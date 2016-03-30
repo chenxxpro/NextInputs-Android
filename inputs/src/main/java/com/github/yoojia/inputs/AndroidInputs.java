@@ -13,7 +13,7 @@ import android.widget.ToggleButton;
  * @author 陈小锅 (yoojia.chen@gmail.com)
  * @since 1.0
  */
-public class Inputs {
+public class AndroidInputs extends Inputs{
 
     public static TextInput<TextView> textView(TextView textView){
         return new TextInput<>(textView);

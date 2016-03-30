@@ -73,6 +73,15 @@ dependencies {
 
 # Change Log
 
+### 1.2.3
+
+- NextInputs 更新为1.3.2 版本；
+- 原来Inputs更新为AndroidInputs；
+
+### 1.2.2
+
+- Bugs fixes
+
 ### 1.2.1
 
 - NextInputs 更新为 1.3 版本，移除Fluent，使用NextInputs的Fluent来实现流式API；
