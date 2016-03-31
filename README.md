@@ -6,7 +6,7 @@
 
 在NextInputs项目有非常详细的介绍。详见NextInputs项目，地址：[https://github.com/yoojia/NextInputs](https://github.com/yoojia/NextInputs)
 
-更多相关说明，见博客：[http://blog.csdn.net/yoojia/article/details/50821055](http://blog.csdn.net/yoojia/article/details/50821055)
+更多相关说明，见博客：[http://yoojia.github.io/2016/next-inputs/](http://yoojia.github.io/2016/next-inputs/)
 
 ----
 
