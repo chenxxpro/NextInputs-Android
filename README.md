@@ -62,16 +62,25 @@ dependencies {
 }
 ```
 
-当前最新版本为 `1.2`：
+当前最新版本为 `1.2.3`：
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs-android:1.2'
+    compile 'com.github.yoojia:next-inputs-android:1.2.3'
 }
 ```
 ----
 
 # Change Log
+
+### 1.2.3
+
+- NextInputs 更新为1.3.2 版本；
+- 原来Inputs更新为AndroidInputs；
+
+### 1.2.2
+
+- Bugs fixes
 
 ### 1.2.1
 

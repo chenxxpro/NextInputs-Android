@@ -16,7 +16,7 @@ public class TextLazyLoader implements LazyLoader<String> {
 
     @Override
     public String getValue() {
-        return mInput.getText().toString();
+        return String.valueOf(mInput.getText());
     }
 
     public static TextLazyLoader textView(TextView textView){

@@ -146,31 +146,31 @@ public class InputsAccess {
     }
 
     public TextInput<TextView> findTextView(int viewId){
-        return Inputs.textView((TextView) mFormView.findViewById(viewId));
+        return AndroidInputs.textView((TextView) mFormView.findViewById(viewId));
     }
 
     public TextInput<EditText> findEditText(int viewId) {
-        return Inputs.editText((EditText) mFormView.findViewById(viewId));
+        return AndroidInputs.editText((EditText) mFormView.findViewById(viewId));
     }
 
     public Input findRadioButton(int viewId) {
-        return Inputs.radioButton((RadioButton) mFormView.findViewById(viewId));
+        return AndroidInputs.radioButton((RadioButton) mFormView.findViewById(viewId));
     }
 
     public Input findCheckBox(int viewId) {
-        return Inputs.checkBox((CheckBox) mFormView.findViewById(viewId));
+        return AndroidInputs.checkBox((CheckBox) mFormView.findViewById(viewId));
     }
 
     public Input findToggleButton(int viewId) {
-        return Inputs.toggleButton((ToggleButton) mFormView.findViewById(viewId));
+        return AndroidInputs.toggleButton((ToggleButton) mFormView.findViewById(viewId));
     }
 
     public Input findRatingBar(int viewId) {
-        return Inputs.ratingBar((RatingBar) mFormView.findViewById(viewId));
+        return AndroidInputs.ratingBar((RatingBar) mFormView.findViewById(viewId));
     }
 
     public Input findCheckable(int viewId) {
-        return Inputs.checkable((CompoundButton) mFormView.findViewById(viewId));
+        return AndroidInputs.checkable((CompoundButton) mFormView.findViewById(viewId));
     }
 
     public  <T> T findView(int viewId) {
