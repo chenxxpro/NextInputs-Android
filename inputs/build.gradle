@@ -44,7 +44,8 @@ dependencies {
 }
 
 ext{
-    projVersion = '1.2.4'
+    projVersion = '1.2.5'
+    projArtifactId = 'next-inputs-android'
     projName = 'NextInputs-Android'
     projDesc = 'NextInputs-Android: Android binding for NextInputs'
     projURL = "https://github.com/yoojia/NextInputs-Android"
@@ -53,12 +54,45 @@ ext{
 
 group 'com.github.yoojia'
 version projVersion
+project.archivesBaseName = projArtifactId
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
 apply plugin: 'com.github.dcendents.android-maven'
+
+task androidSourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += configurations.compile
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task androidJavadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+javadoc {
+    options{
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+        links "http://docs.oracle.com/javase/7/docs/api"
+        title projName
+    }
+}
+
+artifacts {
+    archives androidSourcesJar
+    archives androidJavadocJar
+}
 
 install {
     repositories.mavenInstaller {
@@ -70,7 +104,7 @@ install {
 
             packaging 'aar'
             groupId 'com.github.yoojia'
-            artifactId 'next-inputs-android'
+            artifactId projArtifactId
             version projVersion
 
             licenses {
@@ -122,7 +156,7 @@ bintray {
             }
 
             mavenCentralSync {
-                sync = true
+                sync = project.hasProperty('SONATYPE_USER') && project.hasProperty('SONATYPE_KEY')
                 user = project.hasProperty('SONATYPE_USER') ? project.property('SONATYPE_USER') : ""
                 password = project.hasProperty('SONATYPE_PASS') ? project.property('SONATYPE_PASS') : ""
                 close = '1'
