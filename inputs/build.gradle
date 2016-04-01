@@ -45,6 +45,7 @@ dependencies {
 
 ext{
     projVersion = '1.2.4'
+    projArtifactId = 'next-inputs-android'
     projName = 'NextInputs-Android'
     projDesc = 'NextInputs-Android: Android binding for NextInputs'
     projURL = "https://github.com/yoojia/NextInputs-Android"
@@ -53,7 +54,7 @@ ext{
 
 group 'com.github.yoojia'
 version projVersion
-project.archivesBaseName = 'next-inputs-android'
+project.archivesBaseName = projArtifactId
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
@@ -98,7 +99,7 @@ install {
 
             packaging 'aar'
             groupId 'com.github.yoojia'
-            artifactId 'next-inputs-android'
+            artifactId projArtifactId
             version projVersion
 
             licenses {
@@ -150,7 +151,7 @@ bintray {
             }
 
             mavenCentralSync {
-                sync = true
+                sync = project.hasProperty('SONATYPE_USER') && project.hasProperty('SONATYPE_KEY')
                 user = project.hasProperty('SONATYPE_USER') ? project.property('SONATYPE_USER') : ""
                 password = project.hasProperty('SONATYPE_PASS') ? project.property('SONATYPE_PASS') : ""
                 close = '1'
