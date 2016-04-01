@@ -44,7 +44,7 @@ dependencies {
 }
 
 ext{
-    projVersion = '1.2.4'
+    projVersion = '1.2.5'
     projArtifactId = 'next-inputs-android'
     projName = 'NextInputs-Android'
     projDesc = 'NextInputs-Android: Android binding for NextInputs'
@@ -62,7 +62,7 @@ tasks.withType(JavaCompile) {
 
 apply plugin: 'com.github.dcendents.android-maven'
 
-task sourcesJar(type: Jar) {
+task androidSourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     classifier = 'sources'
 }
@@ -73,7 +73,7 @@ task javadoc(type: Javadoc) {
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
+task androidJavadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
 }
@@ -87,6 +87,11 @@ javadoc {
         links "http://docs.oracle.com/javase/7/docs/api"
         title projName
     }
+}
+
+artifacts {
+    archives androidSourcesJar
+    archives androidJavadocJar
 }
 
 install {

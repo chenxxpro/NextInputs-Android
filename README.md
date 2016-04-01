@@ -66,6 +66,7 @@ dependencies {
 
 ```groovy
 dependencies {
+    compile 'com.github.yoojia:next-inputs:1.3.3'
     compile 'com.github.yoojia:next-inputs-android:1.2.3'
 }
 ```
