@@ -53,12 +53,40 @@ ext{
 
 group 'com.github.yoojia'
 version projVersion
+project.archivesBaseName = 'next-inputs-android'
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
 apply plugin: 'com.github.dcendents.android-maven'
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += configurations.compile
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+javadoc {
+    options{
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+        links "http://docs.oracle.com/javase/7/docs/api"
+        title projName
+    }
+}
 
 install {
     repositories.mavenInstaller {
