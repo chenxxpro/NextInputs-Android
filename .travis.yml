@@ -1,6 +1,10 @@
-language: java
+language: android
+android:
+  components:
+    - tools
+    - build-tools-23.0.2
+    - android-23
+    - extra-android-m2repository
 
-sudo: false
-
-jdk:
-    - oraclejdk7
+script:
+  - ./gradlew test
