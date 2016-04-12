@@ -8,8 +8,7 @@
 
 更多相关说明，见博客：[http://yoojia.github.io/2016/next-inputs/](http://yoojia.github.io/2016/next-inputs/)
 
-[![BuildStatus](https://travis-ci.org/yoojia/NextInputs-Android.svg?branch=develop)](https://travis-ci.org/yoojia/NextInput-Android)
-----
+[![BuildStatus](https://travis-ci.org/yoojia/NextInputs-Android.svg?branch=develop)](https://travis-ci.org/yoojia/NextInputs-Android)
 
 # 使用示例
 
