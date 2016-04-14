@@ -58,22 +58,14 @@ boolean passed = inputs.test();
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs-android:<latest-version>'
-}
-```
-
-当前最新版本为 `1.2.5`：
-
-```groovy
-dependencies {
-    compile 'com.github.yoojia:next-inputs-android:1.2.5'
+    compile 'com.github.yoojia:next-inputs-android:1.2.6'
 }
 ```
 ----
 
 # Change Log
 
-### 1.2.4, 1.2.5
+### 1.2.4, 1.2.5, 1.2.6
 
 - 更新NextInputs版本
 
