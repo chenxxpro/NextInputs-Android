@@ -73,6 +73,10 @@ dependencies {
 
 # Change Log
 
+### 1.2.4, 1.2.5
+
+- 更新NextInputs版本
+
 ### 1.2.3
 
 - NextInputs 更新为1.3.2 版本；
@@ -103,7 +107,7 @@ dependencies {
 
 # License
 
-    Copyright 2015 Yoojia Chen
+    Copyright 2015-2016 Yoojia Chen
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
