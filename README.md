@@ -65,7 +65,7 @@ dependencies {
 
 # Change Log
 
-### 1.2.4, 1.2.5, 1.2.6
+### 1.2.4, 1.2.5, 1.2.6, 1.2.7
 
 - 更新NextInputs版本
 
