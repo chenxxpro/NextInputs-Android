@@ -18,18 +18,18 @@ final InputsAccess access = new InputsAccess(this);
 // 一、流式API
 inputs  // 必选，手机号
         .on(access.findEditText(R.id.form_field_1))
-        .with(StaticPattern.Required(), StaticPattern.ChineseMobile())
+        .with(StaticScheme.Required(), StaticScheme.ChineseMobile())
         // 信用卡
         .on(access.findEditText(R.id.form_field_2))
-        .with(StaticPattern.BlankCard());
+        .with(StaticScheme.BlankCard());
 // 二、标准API
 // 必选，数字，最大20字符
-inputs.add(access.findEditText(R.id.form_field_3), StaticPattern.Required(), StaticPattern.Digits(), ValuePattern.MaxLength(20));
+inputs.add(access.findEditText(R.id.form_field_3), StaticScheme.Required(), StaticScheme.Digits(), ValueScheme.MaxLength(20));
 // 必选，邮件
-inputs.add(access.findEditText(R.id.form_field_4), StaticPattern.Required(), StaticPattern.Email());
+inputs.add(access.findEditText(R.id.form_field_4), StaticScheme.Required(), StaticScheme.Email());
 // 必选，与邮件相同
 final LazyLoaders loader = new LazyLoaders(this);
-        inputs.add(access.findEditText(R.id.form_field_5), ValuePattern.Required(), ValuePattern.EqualsTo(loader.fromEditText(R.id.form_field_4)));
+        inputs.add(access.findEditText(R.id.form_field_5), ValueScheme.Required(), ValueScheme.EqualsTo(loader.fromEditText(R.id.form_field_4)));
 // 执行校验，并返回校验结果
 boolean passed = inputs.test();
 
