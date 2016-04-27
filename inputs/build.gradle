@@ -40,7 +40,7 @@ android {
 }
 
 dependencies {
-    compile 'com.github.yoojia:next-inputs:1.5'
+    compile 'com.github.yoojia:next-inputs:latest.integration'
 }
 
 ext{
