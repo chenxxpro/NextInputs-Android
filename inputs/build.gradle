@@ -132,8 +132,8 @@ install {
 }
 
 bintray {
-    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
-    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('bintrayUser')
+    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('bintrayApiKey')
     configurations = ['archives']
 
     dryRun = false
@@ -156,9 +156,8 @@ bintray {
             }
 
             mavenCentralSync {
-                sync = project.hasProperty('SONATYPE_USER') && project.hasProperty('SONATYPE_KEY')
-                user = project.hasProperty('SONATYPE_USER') ? project.property('SONATYPE_USER') : ""
-                password = project.hasProperty('SONATYPE_PASS') ? project.property('SONATYPE_PASS') : ""
+                user = project.hasProperty('SONATYPE_USER') ? project.property('SONATYPE_USER') : System.getenv('SONATYPE_USER')
+                password = project.hasProperty('SONATYPE_PASS') ? project.property('SONATYPE_PASS') : System.getenv('SONATYPE_PASS')
                 close = '1'
             }
         }
