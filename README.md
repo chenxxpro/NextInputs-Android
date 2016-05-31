@@ -24,9 +24,9 @@ inputs  // 必选，手机号
         .with(StaticScheme.BlankCard());
 // 二、标准API
 // 必选，数字，最大20字符
-inputs.add(access.findEditText(R.id.form_field_3), StaticScheme.Required(), StaticScheme.Digits(), ValueScheme.MaxLength(20));
+inputs.add(userIdEditText, StaticScheme.Required(), StaticScheme.Digits(), ValueScheme.MaxLength(20));
 // 必选，邮件
-inputs.add(access.findEditText(R.id.form_field_4), StaticScheme.Required(), StaticScheme.Email());
+inputs.add(emailEditText, StaticScheme.Required(), StaticScheme.Email());
 // 必选，与邮件相同
 final LazyLoaders loader = new LazyLoaders(this);
         inputs.add(access.findEditText(R.id.form_field_5), ValueScheme.Required(), ValueScheme.EqualsTo(loader.fromEditText(R.id.form_field_4)));
@@ -58,12 +58,16 @@ boolean passed = inputs.test();
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs-android:latest.integration'
+    compile 'com.github.yoojia:next-inputs-android:1.3'
 }
 ```
 ----
 
 # Change Log
+
+### 1.3
+
+- AndroidNextInputs 增加add(...)方法，可直接添加Android组件和Scheme
 
 ### 1.2.8
 
