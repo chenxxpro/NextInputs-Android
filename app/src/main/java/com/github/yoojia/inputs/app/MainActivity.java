@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
                     submit.setText("校验通过");
                 }else{
                     submit.setText("校验失败");
+                    access.findEditText(R.id.form_field_1).inputView.setText("12222");
+                    access.findEditText(R.id.form_field_1).inputView.setError(null);
                 }
             }
         });
