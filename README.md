@@ -58,7 +58,8 @@ boolean passed = inputs.test();
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs-android:1.3'
+    compile 'com.github.yoojia:next-inputs-android:1.3.1'
+    compile 'com.github.yoojia:next-inputs:1.5.2'
 }
 ```
 ----
