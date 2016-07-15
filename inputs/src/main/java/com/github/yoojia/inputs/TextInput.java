@@ -7,12 +7,10 @@ import android.widget.TextView;
  *
  * @author 陈小锅 (yoojia.chen@gmail.com)
  */
-public class TextInput<T extends TextView> implements Input{
-
-    public final T inputView;
+public class TextInput<T extends TextView> extends ViewInput<T> {
 
     public TextInput(T input) {
-        inputView = input;
+        super(input);
     }
 
     @Override

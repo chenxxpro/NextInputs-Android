@@ -58,13 +58,17 @@ boolean passed = inputs.test();
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs-android:1.3.1'
-    compile 'com.github.yoojia:next-inputs:1.5.2'
+    compile 'com.github.yoojia:next-inputs-android:1.3.3'
+    compile 'com.github.yoojia:next-inputs:1.5.4'
 }
 ```
 ----
 
 # Change Log
+
+### 1.3.2
+
+- 增加remove(View)方法，移除View关联的校验规则；
 
 ### 1.3
 
