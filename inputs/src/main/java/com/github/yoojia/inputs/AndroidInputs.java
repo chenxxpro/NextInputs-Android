@@ -23,28 +23,28 @@ public class AndroidInputs extends Inputs{
         return new TextInput<>(editText);
     }
 
-    public static Input radioButton(final RadioButton radioButton) {
+    public static ViewInput<CompoundButton> radioButton(final RadioButton radioButton) {
         return checkable(radioButton);
     }
 
-    public static Input checkBox(CheckBox checkBox) {
+    public static ViewInput<CompoundButton> checkBox(CheckBox checkBox) {
         return checkable(checkBox);
     }
 
-    public static Input toggleButton(ToggleButton toggleButton) {
+    public static ViewInput<CompoundButton> toggleButton(ToggleButton toggleButton) {
         return checkable(toggleButton);
     }
 
-    public static Input ratingBar(final RatingBar ratingBar) {
-        return new Input() {
+    public static ViewInput<RatingBar> ratingBar(final RatingBar ratingBar) {
+        return new ViewInput<RatingBar>(ratingBar) {
             @Override public String getValue() {
                 return String.valueOf(ratingBar.getRating());
             }
         };
     }
 
-    public static Input checkable(final CompoundButton checkable) {
-        return new Input() {
+    public static ViewInput<CompoundButton> checkable(final CompoundButton checkable) {
+        return new ViewInput<CompoundButton>(checkable) {
             @Override public String getValue() {
                 return String.valueOf(checkable.isChecked());
             }

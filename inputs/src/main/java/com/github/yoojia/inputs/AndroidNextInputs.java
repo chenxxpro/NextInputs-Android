@@ -1,5 +1,6 @@
 package com.github.yoojia.inputs;
 
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -8,6 +9,11 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 /**
  * An Android wrapper for NextInputs
  * @author 陈小锅 (yoojia.chen@gmail.com)
@@ -15,42 +21,63 @@ import android.widget.ToggleButton;
  */
 public class AndroidNextInputs extends NextInputs {
 
+    private final Set<ViewInput> inputs = new HashSet<>();
+
     public AndroidNextInputs() {
         setMessageDisplay(new AndroidMessageDisplay());
     }
 
     public AndroidNextInputs add(TextView input, Scheme...schemes){
-        super.add(AndroidInputs.textView(input), schemes);
+        addViewInput(AndroidInputs.textView(input), schemes);
         return this;
     }
 
     public AndroidNextInputs add(EditText input, Scheme...schemes){
-        super.add(AndroidInputs.editText(input), schemes);
+        addViewInput(AndroidInputs.editText(input), schemes);
         return this;
     }
 
     public AndroidNextInputs add(RadioButton input, Scheme...schemes){
-        super.add(AndroidInputs.radioButton(input), schemes);
+        addViewInput(AndroidInputs.radioButton(input), schemes);
         return this;
     }
 
     public AndroidNextInputs add(ToggleButton input, Scheme...schemes){
-        super.add(AndroidInputs.toggleButton(input), schemes);
+        addViewInput(AndroidInputs.toggleButton(input), schemes);
         return this;
     }
 
     public AndroidNextInputs add(CheckBox input, Scheme...schemes){
-        super.add(AndroidInputs.checkBox(input), schemes);
+        addViewInput(AndroidInputs.checkBox(input), schemes);
         return this;
     }
 
     public AndroidNextInputs add(RatingBar input, Scheme...schemes){
-        super.add(AndroidInputs.ratingBar(input), schemes);
+        addViewInput(AndroidInputs.ratingBar(input), schemes);
         return this;
     }
 
     public AndroidNextInputs add(CompoundButton input, Scheme...schemes){
-        super.add(AndroidInputs.checkable(input), schemes);
+        addViewInput(AndroidInputs.checkable(input), schemes);
         return this;
+    }
+    
+    public AndroidNextInputs remove(View view) {
+        final List<ViewInput> toRemove = new ArrayList<>();
+        for(ViewInput vi : inputs) {
+            if(vi.inputView == view) {
+                toRemove.add(vi);
+            }
+        }
+        for (ViewInput remove: toRemove) {
+            inputs.remove(remove);
+            super.remove(remove);
+        }
+        return this;
+    }
+    
+    private void addViewInput(ViewInput input, Scheme...schemes) {
+        inputs.add(input);
+        super.add(input, schemes);
     }
 }
