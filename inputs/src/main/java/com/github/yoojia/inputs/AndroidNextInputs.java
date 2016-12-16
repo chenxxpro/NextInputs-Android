@@ -28,37 +28,37 @@ public class AndroidNextInputs extends NextInputs {
     }
 
     public AndroidNextInputs add(TextView input, Scheme...schemes){
-        addViewInput(AndroidInputs.textView(input), schemes);
+        addViewInput(WidgetProviders.textView(input), schemes);
         return this;
     }
 
     public AndroidNextInputs add(EditText input, Scheme...schemes){
-        addViewInput(AndroidInputs.editText(input), schemes);
+        addViewInput(WidgetProviders.editText(input), schemes);
         return this;
     }
 
     public AndroidNextInputs add(RadioButton input, Scheme...schemes){
-        addViewInput(AndroidInputs.radioButton(input), schemes);
+        addViewInput(WidgetProviders.radioButton(input), schemes);
         return this;
     }
 
     public AndroidNextInputs add(ToggleButton input, Scheme...schemes){
-        addViewInput(AndroidInputs.toggleButton(input), schemes);
+        addViewInput(WidgetProviders.toggleButton(input), schemes);
         return this;
     }
 
     public AndroidNextInputs add(CheckBox input, Scheme...schemes){
-        addViewInput(AndroidInputs.checkBox(input), schemes);
+        addViewInput(WidgetProviders.checkBox(input), schemes);
         return this;
     }
 
     public AndroidNextInputs add(RatingBar input, Scheme...schemes){
-        addViewInput(AndroidInputs.ratingBar(input), schemes);
+        addViewInput(WidgetProviders.ratingBar(input), schemes);
         return this;
     }
 
     public AndroidNextInputs add(CompoundButton input, Scheme...schemes){
-        addViewInput(AndroidInputs.checkable(input), schemes);
+        addViewInput(WidgetProviders.checkable(input), schemes);
         return this;
     }
     

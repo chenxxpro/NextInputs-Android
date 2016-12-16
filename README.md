@@ -14,24 +14,58 @@
 
 ```java
 final AndroidNextInputs inputs = new AndroidNextInputs();
-final InputsAccess access = new InputsAccess(this);
+final WidgetAccess access = new WidgetAccess(this);
 // 一、流式API
 inputs  // 必选，手机号
-        .on(access.findEditText(R.id.form_field_1))
+        .add(access.findEditText(R.id.form_field_1))
         .with(StaticScheme.Required(), StaticScheme.ChineseMobile())
         // 信用卡
-        .on(access.findEditText(R.id.form_field_2))
-        .with(StaticScheme.BlankCard());
+        .add(access.findEditText(R.id.form_field_2))
+        .with(StaticScheme.BankCard());
 // 二、标准API
 // 必选，数字，最大20字符
-inputs.add(userIdEditText, StaticScheme.Required(), StaticScheme.Digits(), ValueScheme.MaxLength(20));
+inputs.add(access.findEditText(R.id.form_field_3), StaticScheme.Required(), StaticScheme.Digits(), ValueScheme.MaxLength(20));
 // 必选，邮件
-inputs.add(emailEditText, StaticScheme.Required(), StaticScheme.Email());
+inputs.add(access.findEditText(R.id.form_field_4), StaticScheme.Required(), StaticScheme.Email());
 // 必选，与邮件相同
 final LazyLoaders loader = new LazyLoaders(this);
-        inputs.add(access.findEditText(R.id.form_field_5), ValueScheme.Required(), ValueScheme.EqualsTo(loader.fromEditText(R.id.form_field_4)));
-// 执行校验，并返回校验结果
-boolean passed = inputs.test();
+inputs.add(access.findEditText(R.id.form_field_5), ValueScheme.Required(), ValueScheme.EqualsTo(loader.fromEditText(R.id.form_field_4)));
+// Host
+inputs.add(access.findEditText(R.id.form_field_6), StaticScheme.Host());
+// URL
+inputs.add(access.findEditText(R.id.form_field_6), StaticScheme.URL());
+// MaxLength
+inputs.add(access.findEditText(R.id.form_field_7), ValueScheme.MaxLength(5));
+// MinLength
+inputs.add(access.findEditText(R.id.form_field_8), ValueScheme.MinLength(4));
+// RangeLength
+inputs.add(access.findEditText(R.id.form_field_9), ValueScheme.RangeLength(4, 8));
+// Not Blank
+inputs.add(access.findEditText(R.id.form_field_10), StaticScheme.NotBlank());
+// Numeric
+inputs.add(access.findEditText(R.id.form_field_11), StaticScheme.Numeric());
+// MaxValue
+inputs.add(access.findEditText(R.id.form_field_12), ValueScheme.MaxValue(100));
+// MinValue
+inputs.add(access.findEditText(R.id.form_field_13), ValueScheme.MinValue(20));
+// RangeValue
+inputs.add(access.findEditText(R.id.form_field_14), ValueScheme.RangeValue(18, 30));
+
+
+final Button submit = (Button) findViewById(R.id.form_commit);
+submit.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        boolean passed = inputs.test();
+        if (passed) {
+            submit.setText("校验通过");
+        }else{
+            submit.setText("校验失败");
+            access.findEditText(R.id.form_field_1).inputView.setText("12222");
+            access.findEditText(R.id.form_field_1).inputView.setError(null);
+        }
+    }
+});
 
 ```
 
@@ -41,9 +75,9 @@ boolean passed = inputs.test();
 
 `AndroidNextInputs` 增加了Android支持，默认使用的AndroidMessageDisplay实现了Android内置组件的错误展示功能 ：使用TextView.setError()和Toast来展示校验失败的消息。
 
-### InputsAccess
+### WidgetAccess
 
-`InputsAccess` 是一个为Android创建的扩展工具类，用于读取输入组件的数据，通过它可以快捷地读取布局文件中的EditText等组件及其数据。
+`WidgetAccess` 是一个为Android创建的扩展工具类，用于读取输入组件的数据，通过它可以快捷地读取布局文件中的EditText等组件及其数据。
 
 - findXXX 等方法可用于快速查找各类型的View；
 - getXXX 等方法可快速读取各类型View的数值；
@@ -54,17 +88,34 @@ boolean passed = inputs.test();
 
 ----
 
+# JCenter 支持
+
+本项目的库文件托管在JCenter上，注意添加JCenter的仓库：
+
+```groovy
+repositories {
+    jcenter()
+}
+```
+
 # 配置 Gradle 依赖
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs-android:1.3.3'
-    compile 'com.github.yoojia:next-inputs:1.6'
+    compile 'com.github.yoojia:next-inputs-android:1.4'
+    compile 'com.github.yoojia:next-inputs:1.8'
 }
 ```
 ----
 
 # Change Log
+
+### 2016/12/16 - 1.4
+
+- 更新NextInputs版本为1.8；
+- 修正BankCard拼写错误；
+- AndroidInputs 标记为@Deprecated，使用 WidgetProviders 来替代；
+- InputsAccess 标记为@Deprecated，使用 WidgetAccess 来替代；
 
 ### 1.3.3
 
