@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.github.yoojia.inputs.AndroidNextInputs;
-import com.github.yoojia.inputs.InputsAccess;
+import com.github.yoojia.inputs.WidgetAccess;
 import com.github.yoojia.inputs.LazyLoaders;
 import com.github.yoojia.inputs.StaticScheme;
 import com.github.yoojia.inputs.ValueScheme;
@@ -19,14 +19,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final AndroidNextInputs inputs = new AndroidNextInputs();
-        final InputsAccess access = new InputsAccess(this);
+        final WidgetAccess access = new WidgetAccess(this);
         // 一、流式API
         inputs  // 必选，手机号
-                .on(access.findEditText(R.id.form_field_1))
+                .add(access.findEditText(R.id.form_field_1))
                 .with(StaticScheme.Required(), StaticScheme.ChineseMobile())
                 // 信用卡
-                .on(access.findEditText(R.id.form_field_2))
-                .with(StaticScheme.BlankCard());
+                .add(access.findEditText(R.id.form_field_2))
+                .with(StaticScheme.BankCard());
         // 二、标准API
         // 必选，数字，最大20字符
         inputs.add(access.findEditText(R.id.form_field_3), StaticScheme.Required(), StaticScheme.Digits(), ValueScheme.MaxLength(20));
