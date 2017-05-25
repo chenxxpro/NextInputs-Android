@@ -102,13 +102,19 @@ repositories {
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs-android:1.4'
-    compile 'com.github.yoojia:next-inputs:1.8'
+    compile 'com.github.yoojia:next-inputs-android:1.5'
+    compile 'com.github.yoojia:next-inputs:1.8.1'
 }
 ```
 ----
 
 # Change Log
+
+### 2017/05/25 - 1.5
+
+- 更新NextInputs版本为1.8.1；
+- 移除AndroidInputs类；
+- 移除InputsAccess类；
 
 ### 2016/12/16 - 1.4
 

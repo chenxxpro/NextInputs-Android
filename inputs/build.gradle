@@ -40,11 +40,11 @@ android {
 }
 
 dependencies {
-    compile 'com.github.yoojia:next-inputs:1.8'
+    compile 'com.github.yoojia:next-inputs:1.8.1'
 }
 
 ext{
-    projVersion = '1.4'
+    projVersion = '1.5'
     projArtifactId = 'next-inputs-android'
     projName = 'NextInputs-Android'
     projDesc = 'NextInputs-Android: Android binding for NextInputs'

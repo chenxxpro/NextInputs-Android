@@ -6,7 +6,7 @@ import android.widget.TextView;
 /**
  * @author 陈小锅 (yoojia.chen@gmail.com)
  */
-public class TextLazyLoader implements LazyLoader<String> {
+public class TextLazyLoader implements Loader1A<String> {
 
     private final TextView mInput;
 
