@@ -4,7 +4,7 @@
 
 # NextInput功能特性及介绍
 
-在NextInputs项目有非常详细的介绍。详见NextInputs项目，地址：[Inputs](inputs/README.md)
+在NextInputs项目有非常详细的介绍。详见NextInputs项目，地址：[Inputs](./inputs/README.md)
 
 # 使用示例
 
