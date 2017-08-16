@@ -33,8 +33,6 @@ public class MobileTestCase {
         Assert.assertFalse(verifier.perform("12112345678"));
         Assert.assertFalse(verifier.perform("11112345678"));
         Assert.assertFalse(verifier.perform("10112345678"));
-        Assert.assertFalse(verifier.perform("16112345678"));
-        Assert.assertFalse(verifier.perform("19112345678"));
         Assert.assertFalse(verifier.perform("+13112345678"));
     }
 }
