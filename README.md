@@ -4,11 +4,7 @@
 
 # NextInput功能特性及介绍
 
-在NextInputs项目有非常详细的介绍。详见NextInputs项目，地址：[https://github.com/yoojia/NextInputs](https://github.com/yoojia/NextInputs)
-
-更多相关说明，见博客：[http://yoojia.github.io/2016/next-inputs/](http://yoojia.github.io/2016/next-inputs/)
-
-[![BuildStatus](https://travis-ci.org/yoojia/NextInputs-Android.svg?branch=develop)](https://travis-ci.org/yoojia/NextInputs-Android)
+在NextInputs项目有非常详细的介绍。详见NextInputs项目，地址：[Inputs](inputs/README.md)
 
 # 使用示例
 
@@ -110,7 +106,12 @@ dependencies {
 
 # Change Log
 
-### 2017/05/25 - 1.5
+### 1.6 - 2017/08/16
+
+- 合并NextInput项目到本项目中；
+- 更新工信部新号段166,198,199的校验支持；
+
+### 1.5 - 2017/05/25
 
 - 更新NextInputs版本为1.8.1；
 - 移除AndroidInputs类；
