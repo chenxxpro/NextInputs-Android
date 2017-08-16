@@ -1,10 +1,7 @@
+# 项目续建
 
-**NextInputs-Android** 基于 NextInputs [https://github.com/yoojia/NextInputs](https://github.com/yoojia/NextInputs) 的扩展，
-增加对Android组件的支持。
-
-# NextInput功能特性及介绍
-
-在NextInputs项目有非常详细的介绍。详见NextInputs项目，地址：[Inputs](./inputs/README.md)
+- `inputs` Inputs校验核心模块，实现校验库的整体架构；见: [Inputs](./inputs/README.md)
+- `android` Android 外壳模块，针对Android平台的组件访问做支持；
 
 # 使用示例
 
