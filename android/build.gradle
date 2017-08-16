@@ -1,0 +1,166 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
+    }
+}
+
+plugins {
+    id "com.jfrog.bintray" version "1.6"
+}
+
+repositories {
+    jcenter()
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        minSdkVersion 1
+        targetSdkVersion 23
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile project(':inputs')
+}
+
+ext{
+    projVersion = '1.6'
+    projArtifactId = 'next-inputs-android'
+    projName = 'NextInputs-Android'
+    projDesc = 'NextInputs-Android: Android binding for NextInputs'
+    projURL = "https://github.com/yoojia/NextInputs-Android"
+    projVCS = "https://github.com/yoojia/NextInputs-Android.git"
+}
+
+group 'com.github.yoojia'
+version projVersion
+project.archivesBaseName = projArtifactId
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+apply plugin: 'com.github.dcendents.android-maven'
+
+task androidSourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += configurations.compile
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task androidJavadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+javadoc {
+    options{
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+        links "http://docs.oracle.com/javase/7/docs/api"
+        title projName
+    }
+}
+
+artifacts {
+    archives androidSourcesJar
+    archives androidJavadocJar
+}
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            name projName
+            description projDesc
+            url projURL
+            inceptionYear '2016'
+
+            packaging 'aar'
+            groupId 'com.github.yoojia'
+            artifactId projArtifactId
+            version projVersion
+
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+            scm {
+                connection projVCS
+                url projURL
+
+            }
+            developers {
+                developer {
+                    id 'yoojia'
+                    name 'Yoojia Chen'
+                    email 'yoojiachen@gmail.com'
+                    url 'https://yoojia.github.io'
+                }
+            }
+        }
+    }
+}
+
+bintray {
+    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('bintrayUser')
+    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('bintrayApiKey')
+    configurations = ['archives']
+
+    dryRun = false
+    publish = true
+
+    pkg {
+        repo = 'maven'
+        name = projName
+        userOrg = 'yoojia'
+        licenses = ['Apache-2.0']
+        vcsUrl = projVCS
+        version {
+            name = projVersion
+            desc = projDesc
+            vcsTag = projVersion
+            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+
+            gpg {
+                sign = true
+            }
+
+            mavenCentralSync {
+                user = project.hasProperty('SONATYPE_USER') ? project.property('SONATYPE_USER') : System.getenv('SONATYPE_USER')
+                password = project.hasProperty('SONATYPE_PASS') ? project.property('SONATYPE_PASS') : System.getenv('SONATYPE_PASS')
+                close = '1'
+            }
+        }
+    }
+}
+

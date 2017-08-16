@@ -1,1 +1,1 @@
-include ':app', ':inputs'
+include ':app', ':android', ':inputs'
