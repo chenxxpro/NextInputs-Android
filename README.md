@@ -3,6 +3,12 @@
 - `inputs` Inputs校验核心模块，实现校验库的整体架构；见: [Inputs](./inputs/README.md)
 - `android` Android 外壳模块，针对Android平台的组件访问做支持；
 
+# NextInputs
+
+Inputs校验核心模块，实现校验库的整体架构；
+
+更详细文档，见: [Inputs](./inputs/README.md)
+
 # 使用示例
 
 ```java
@@ -99,6 +105,12 @@ dependencies {
 }
 ```
 ----
+
+# 问题与交流
+
+关于本项目你有任何问题，可以加微信与我联系（抱歉，没有QQ群）：
+
+![WeChat](./MyWeChat.jpg)
 
 # Change Log
 
