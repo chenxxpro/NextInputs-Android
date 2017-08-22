@@ -1,5 +1,7 @@
 # 项目结构
 
+![NextInputs](./NextInputs.jpg)
+
 - `inputs` Inputs校验核心模块，实现校验库的整体架构；见: [Inputs](./inputs/README.md)
 - `android` Android 外壳模块，针对Android平台的组件访问做支持；
 
@@ -101,9 +103,18 @@ repositories {
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs-android:1.6.1'
+    compile 'com.github.yoojia:next-inputs-android:1.6-Final'
 }
 ```
+
+其它版本：
+
+```groovy
+dependencies {
+    compile 'com.github.yoojia:next-inputs-android:1.5'
+}
+```
+
 ----
 
 # 问题与交流
