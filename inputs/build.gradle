@@ -9,7 +9,7 @@ buildscript {
 }
 
 plugins {
-    id "com.jfrog.bintray" version "1.6"
+    id "com.jfrog.bintray" version "1.7.3"
 }
 
 repositories {
@@ -44,7 +44,7 @@ dependencies {
 }
 
 ext{
-    projVersion = '1.6.1'
+    projVersion = '1.6-Final'
     projArtifactId = 'next-inputs-android'
     projName = 'NextInputs-Android'
     projDesc = 'NextInputs-Android: Android binding for NextInputs'
