@@ -22,5 +22,5 @@ android {
 
 dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
-    compile project(':android')
+    compile project(':inputs')
 }
