@@ -9,11 +9,11 @@ import org.junit.Test;
  * @author Yoojia Chen (yoojiachen@gmail.com)
  * @since 1.1
  */
-public class NumericLettersTestCase {
+public class DigitLettersTestCase {
 
     @Test
     public void testPassed() throws Exception {
-        Verifier verifier = new NumericLettersVerifier();
+        Verifier verifier = new DigitLettersVerifier();
         Assert.assertTrue(verifier.perform(null));
         Assert.assertTrue(verifier.perform(""));
         Assert.assertTrue(verifier.perform("0"));
@@ -30,7 +30,7 @@ public class NumericLettersTestCase {
 
     @Test
     public void testFail() throws Exception {
-        Verifier verifier = new NumericLettersVerifier();
+        Verifier verifier = new DigitLettersVerifier();
         Assert.assertFalse(verifier.perform("-1"));
         Assert.assertFalse(verifier.perform("2."));
         Assert.assertFalse(verifier.perform("2.0"));

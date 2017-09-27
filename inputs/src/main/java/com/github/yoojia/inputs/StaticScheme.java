@@ -2,16 +2,17 @@ package com.github.yoojia.inputs;
 
 import com.github.yoojia.inputs.verifiers.BankCardVerifier;
 import com.github.yoojia.inputs.verifiers.BoolVerifier;
+import com.github.yoojia.inputs.verifiers.DigitLettersVerifier;
 import com.github.yoojia.inputs.verifiers.DigitsVerifier;
 import com.github.yoojia.inputs.verifiers.EmailVerifier;
 import com.github.yoojia.inputs.verifiers.HostVerifier;
 import com.github.yoojia.inputs.verifiers.IDCardVerifier;
 import com.github.yoojia.inputs.verifiers.IPv4Verifier;
+import com.github.yoojia.inputs.verifiers.LettersVerifier;
 import com.github.yoojia.inputs.verifiers.MACAddressVerifier;
 import com.github.yoojia.inputs.verifiers.MobileVerifier;
 import com.github.yoojia.inputs.verifiers.NotBlankVerifier;
 import com.github.yoojia.inputs.verifiers.NotEmptyVerifier;
-import com.github.yoojia.inputs.verifiers.NumericLettersVerifier;
 import com.github.yoojia.inputs.verifiers.NumericVerifier;
 import com.github.yoojia.inputs.verifiers.TelephoneVerifier;
 import com.github.yoojia.inputs.verifiers.URLVerifier;
@@ -221,8 +222,15 @@ public class StaticScheme {
         return new Scheme(new BoolVerifier(false)).msg("当前项必须为False");
     }
 
-    public static Scheme NumericLetters() {
-        return numericLetters();
+    //////
+
+    /**
+     * 数字和字母
+     *
+     * @return Scheme
+     */
+    public static Scheme digitLetters() {
+        return new Scheme(new DigitLettersVerifier()).msg("请输入有效的数字和字母");
     }
 
     /**
@@ -230,8 +238,8 @@ public class StaticScheme {
      *
      * @return Scheme
      */
-    public static Scheme numericLetters() {
-        return new Scheme(new NumericLettersVerifier()).msg("请输入有效的数字和字母");
+    public static Scheme letters() {
+        return new Scheme(new LettersVerifier()).msg("请输入有效的字母");
     }
 
 }

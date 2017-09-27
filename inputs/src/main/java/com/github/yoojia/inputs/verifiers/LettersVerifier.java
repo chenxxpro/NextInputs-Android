@@ -8,12 +8,12 @@ import com.github.yoojia.inputs.EmptyableVerifier;
  * @author Yoojia Chen (yoojia.chen@gmail.com)
  * @since 1.1
  */
-public class DigitsVerifier extends EmptyableVerifier {
+public class LettersVerifier extends EmptyableVerifier {
 
     @Override
     public boolean performTestNotEmpty(String notEmptyInput) throws Exception {
         for (int i = 0; i < notEmptyInput.length(); i++) {
-            if (!Character.isDigit(notEmptyInput.charAt(i))) {
+            if (!Character.isLetter(notEmptyInput.charAt(i))){
                 return false;
             }
         }

@@ -125,6 +125,13 @@ dependencies {
 
 # Change Log
 
+### 1.7.0 - 2017/09/27
+
+- 增加字母校验规则 letters;
+- 增加数字和字母校验规则 digitLetters;
+- 增加Trim处理;
+- 更新Scheme接口命名为小写;
+
 ### 1.6 - 2017/08/16
 
 - 合并NextInput项目到本项目中；

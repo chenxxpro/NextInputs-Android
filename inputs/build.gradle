@@ -43,7 +43,7 @@ dependencies {
 }
 
 ext{
-    projVersion = '1.6-Final'
+    projVersion = '1.7.0-Beta'
     projArtifactId = 'next-inputs-android'
     projName = 'NextInputs-Android'
     projDesc = 'NextInputs-Android: Android binding for NextInputs'

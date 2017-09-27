@@ -39,16 +39,6 @@ if(inputs.test()) {
 
 ----
 
-## 配置 Gradle 依赖
-
-```groovy
-dependencies {
-    compile 'com.github.yoojia:next-inputs:1.8'
-}
-```
-
-----
-
 # StaticScheme - 静态校验模式
 
 **静态校验模式**也可以称为数据格式匹配模式。它的明显特征是在校验数据时时，不需要依赖基准参数来判断，而是直接对用户输入的数据检查其格式是否符合要求。如“邮件地址”、“电话号码”等数据格式的校验就属于此模式。
@@ -64,6 +54,8 @@ NextInputs目前内置包含以下静态校验模式，在未来版本也会加�
 - Host - 域名模式
 - URL - URL地址模式
 - Numeric - 数值模式
+- Letters - 字母模式
+- DigitLetters - 数字字母模式
 - BankCard - 银行卡/信用卡号码模式
 - ChineseIDCard 身份证号码模式
 - ChineseMobile 手机号码模式（国内）
@@ -113,6 +105,14 @@ NextInputs目前内置包含以下静态校验模式，在未来版本也会加�
 
 `StaticScheme.numeric()`，输入内容必须是有效的数值。
 
+#### Letters - 数值模式
+
+`StaticScheme.letters()`，输入内容必须是有效的大小写字母。
+
+#### DigitLetters - 数值模式
+
+`StaticScheme.digitLetters()`，输入内容必须是有效的大小写字母和数字。
+
 #### BankCard - 银行卡/信用卡号码模式
 
 `StaticScheme.bankCard()`，输入内容必须是有效的银行卡号或者信用卡号。这个模式在实现上，使用银行卡号校验算法（Luhn）来校验，可以支持13位到19位长度的有效卡号。
@@ -135,11 +135,11 @@ NextInputs目前内置包含以下静态校验模式，在未来版本也会加�
 
 #### IsTrue - 结果为True模式
 
-`StaticScheme.isTrue()`，输入内容必须是True值。通常用于校验RadioBotton或者CheckBox等。
+`StaticScheme.isTrue()`，输入内容必须是True值。通常用于校验RadioButton或者CheckBox等。
 
 #### IsFalse - 结果为False模式
 
-`StaticScheme.isFalse()`，输入内容必须是False值。通常用于校验RadioBotton或者CheckBox等。
+`StaticScheme.isFalse()`，输入内容必须是False值。通常用于校验RadioButton或者CheckBox等。
 
 ----
 
@@ -298,68 +298,7 @@ input == null || input.length() == 0
 - required()
 - notBlank()
 
-
 ----
-
-# 版本更新
-
-##### 1.8.2
-
-- 电话号码校验模块，增加对工信部最近发放的199,166,198新号段支持；
-
-##### 1.8
-
-- 增加Date/Time/DateTime校验模式；
-- ValueScheme的校验模式均增加Loader接口，以用于延迟获取校验基准数值。
-- Scheme的提示消息接口：msg(String) / msgOnFail(String)，增加模板功能。使用{0}/{1}等可动态替换对应的基准数值。
-
-##### 1.7
-
-- 增加固定电话校验模式：ChineseTelephone
-- 增加MAC物理地址校验模式：MAC
-
-##### 1.6.2
-
-- 更新手机号验证正则表达式；
-- 增加FixedLength校验；
-- 更新内部类名及包名；
-- 增加clear()方法，用于移除全部校验条目；
-- 修正BankCard拼写错误问题；
-
-##### 1.5.3
-
-- 使用 Provider 替代 Inputs 工具类
-
-##### 1.5
-
-- Schema 修正为 Scheme
-
-##### 1.4.1
-
-- 修正ValueScheme的RangeValue参数错误；
-
-##### 1.4
-
-- Pattern，StaticPattern，ValuePattern 标识为 @@Deprecated，并重命名为：Scheme, StaticScheme, ValueScheme
-
-##### 1.3
-
-- 增加流式API处理；
-
-##### 1.1
-
-- 更新各个校验模式的内部实现,分离其Tester；
-- ValueScheme 修改为 ValueScheme
-- ValueScheme.EqualsTo() 修改为 ValueScheme.Equals()；
-- ValueScheme.NotEqualsTo() 修改为 ValueScheme.NotEquals()；
-- ABTestBridge 更改为 ABBridge；
-- AbstractTester 更改为 Verifier；
-- Loader 更改为 LazyLoader；
-- AllowEmptyTester 更改为 EmptyableVerifier；
-- Loader 及 ABBridge 的onValue方法修改为 getValueX() 的形式；
-
-----
-
 
 # License
 
