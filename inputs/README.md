@@ -286,6 +286,19 @@ NextInputs对输入数据空值字符串的定义是：
 ```
 input == null || input.length() == 0
 ```
+
+## 输入内容的Trim处理
+
+> scheme.trimInput() / scheme.dontTrim();
+
+在大部分Scheme中，都会在获取原始输入内容的时候，做Trim处理，再做校验。
+
+而以下Scheme默认不做Trim处理：
+
+- required()
+- notBlank()
+
+
 ----
 
 # 版本更新

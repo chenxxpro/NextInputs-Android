@@ -23,6 +23,11 @@ public class Scheme {
      */
     final Verifier verifier;
 
+    /**
+     * 对输入内容做Trim处理
+     */
+    boolean trimInput = true;
+
     public Scheme(Verifier verifier) {
         this.verifier = verifier;
     }
@@ -38,6 +43,16 @@ public class Scheme {
 
     public Scheme msg(String message){
         this.message = message;
+        return this;
+    }
+
+    public Scheme trimInput(){
+        this.trimInput = true;
+        return this;
+    }
+
+    public Scheme dontTrimInput(){
+        this.trimInput = false;
         return this;
     }
 }

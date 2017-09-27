@@ -32,7 +32,10 @@ public class StaticScheme {
      * @return Scheme
      */
     public static Scheme required(){
-        return new Scheme(new NotEmptyVerifier()).msg("此为必填项目").priority(PRIORITY_REQUIRED);
+        return new Scheme(new NotEmptyVerifier())
+                .dontTrimInput()
+                .msg("此为必填项目")
+                .priority(PRIORITY_REQUIRED);
     }
 
     public static Scheme NotBlank(){
@@ -44,7 +47,9 @@ public class StaticScheme {
      * @return Scheme
      */
     public static Scheme notBlank(){
-        return new Scheme(new NotBlankVerifier()).msg("请输入非空内容");
+        return new Scheme(new NotBlankVerifier())
+                .dontTrimInput()
+                .msg("请输入非空内容");
     }
 
     public static Scheme Digits(){

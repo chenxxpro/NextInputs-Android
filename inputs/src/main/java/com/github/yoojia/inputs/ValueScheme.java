@@ -40,7 +40,7 @@ public class ValueScheme {
      * @return Scheme
      */
     public static Scheme required(){
-        return StaticScheme.Required();
+        return StaticScheme.required();
     }
 
     public static Scheme MinLength(final long fixedLength) {

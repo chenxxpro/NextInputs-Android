@@ -136,9 +136,12 @@ public class NextInputs {
     }
 
     private static Result perform(InputSpec spec) throws Exception {
-        final String value = spec.input.getValue();
+        final String rawInput = spec.input.getValue();
         for (Scheme scheme : spec.schemes) {
-            if (!scheme.verifier.perform(value)) {
+            final String inputValue = (rawInput != null && scheme.trimInput) ?
+                    rawInput.trim() :
+                    rawInput;
+            if (!scheme.verifier.perform(inputValue)) {
                 final String message;
                 if(scheme.verifier instanceof SingleVerifier){
                     final SingleVerifier v = (SingleVerifier) scheme.verifier;
