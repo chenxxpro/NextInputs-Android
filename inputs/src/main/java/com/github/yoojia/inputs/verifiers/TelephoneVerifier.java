@@ -12,10 +12,10 @@ import static com.github.yoojia.inputs.Texts.regexMatch;
 public class TelephoneVerifier extends EmptyableVerifier {
     /**
      * 区号： 以0开头
-     *        01开头的只有010
-     *        02开头的是有3位的
+     * 01开头的只有010
+     * 02开头的是有3位的
      * 电话号码：不能以0或1开头。
-     *           加上区号是11或12位。
+     * 加上区号是11或12位。
      */
     @Override
     public boolean performTestNotEmpty(String notEmptyInput) throws Exception {

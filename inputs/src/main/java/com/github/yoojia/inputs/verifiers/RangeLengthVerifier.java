@@ -19,13 +19,13 @@ public class RangeLengthVerifier extends PairedVerifier<Long> {
 
     @Override
     protected boolean performTyped(Long typedInput) {
-        final long minLength  = benchmark1stValue();
-        final long maxLength  = benchmark2ndValue();
+        final long minLength = benchmark1stValue();
+        final long maxLength = benchmark2ndValue();
         return minLength <= typedInput && typedInput <= maxLength;
     }
 
     @Override
     protected Long typedCast(String notEmptyInput) {
-        return (long)notEmptyInput.length();
+        return (long) notEmptyInput.length();
     }
 }

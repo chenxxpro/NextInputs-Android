@@ -12,7 +12,7 @@ import java.util.Locale;
  * @author Yoojia Chen (yoojiachen@gmail.com)
  * @since 1.7
  */
-abstract class SingleDateTimeVerifier extends SingleVerifier<Long>{
+abstract class SingleDateTimeVerifier extends SingleVerifier<Long> {
 
     static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
@@ -23,7 +23,8 @@ abstract class SingleDateTimeVerifier extends SingleVerifier<Long>{
     // Loader: Data
     public SingleDateTimeVerifier(final Loader1A<Date> valueLoader, SimpleDateFormat format) {
         super(new Loader1A<Long>() {
-            @Override public Long getValue() {
+            @Override
+            public Long getValue() {
                 return valueLoader.getValue().getTime();
             }
         });

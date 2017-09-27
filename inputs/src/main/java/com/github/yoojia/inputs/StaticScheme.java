@@ -24,80 +24,86 @@ public class StaticScheme {
     public static final int PRIORITY_REQUIRED = -1024;
     public static final int PRIORITY_GENERAL = 0;
 
-    public static Scheme Required(){
+    public static Scheme Required() {
         return required();
     }
 
     /**
      * 必要项，输入内容不能为空
+     *
      * @return Scheme
      */
-    public static Scheme required(){
+    public static Scheme required() {
         return new Scheme(new NotEmptyVerifier())
                 .dontTrimInput()
                 .msg("此为必填项目")
                 .priority(PRIORITY_REQUIRED);
     }
 
-    public static Scheme NotBlank(){
+    public static Scheme NotBlank() {
         return notBlank();
     }
 
     /**
      * 输入内容不能为空值：空格，制表符等
+     *
      * @return Scheme
      */
-    public static Scheme notBlank(){
+    public static Scheme notBlank() {
         return new Scheme(new NotBlankVerifier())
                 .dontTrimInput()
                 .msg("请输入非空内容");
     }
 
-    public static Scheme Digits(){
+    public static Scheme Digits() {
         return digits();
     }
 
     /**
      * 输入内容只能是数字
+     *
      * @return Scheme
      */
-    public static Scheme digits(){
+    public static Scheme digits() {
         return new Scheme(new DigitsVerifier()).msg("请输入数字");
     }
 
-    public static Scheme Email(){
+    public static Scheme Email() {
         return email();
     }
 
     /**
      * 电子邮件地址
+     *
      * @return Scheme
      */
-    public static Scheme email(){
+    public static Scheme email() {
         return new Scheme(new EmailVerifier()).msg("请输入有效的邮件地址");
     }
 
-    public static Scheme IPv4(){
+    public static Scheme IPv4() {
         return ipv4();
     }
 
     /**
      * IPV4地址
+     *
      * @return Scheme
      */
-    public static Scheme ipv4(){
+    public static Scheme ipv4() {
         return new Scheme(new IPv4Verifier()).msg("请输入有效的IP地址");
     }
 
-    public static Scheme Host(){
+    public static Scheme Host() {
         return host();
     }
 
     /**
      * 域名地址
+     *
      * @return Scheme
      */
-    public static Scheme host(){
+    public static Scheme host() {
         return new Scheme(new HostVerifier()).msg("请输入有效的域名地址");
     }
 
@@ -107,9 +113,10 @@ public class StaticScheme {
 
     /**
      * URL地址
+     *
      * @return Scheme
      */
-    public static Scheme url(){
+    public static Scheme url() {
         return new Scheme(new URLVerifier()).msg("请输入有效的网址");
     }
 
@@ -119,20 +126,23 @@ public class StaticScheme {
 
     /**
      * 数值
+     *
      * @return Scheme
      */
-    public static Scheme numeric(){
+    public static Scheme numeric() {
         return new Scheme(new NumericVerifier()).msg("请输入有效的数值");
     }
 
     public static Scheme BankCard() {
         return bankCard();
     }
+
     /**
      * 银行卡号
+     *
      * @return Scheme
      */
-    public static Scheme bankCard(){
+    public static Scheme bankCard() {
         return new Scheme(new BankCardVerifier()).msg("请输入有效的银行卡/信用卡号码");
     }
 
@@ -142,9 +152,10 @@ public class StaticScheme {
 
     /**
      * 身份证号
+     *
      * @return Scheme
      */
-    public static Scheme chineseIDCard(){
+    public static Scheme chineseIDCard() {
         return new Scheme(new IDCardVerifier()).msg("请输入有效的身份证号");
     }
 
@@ -154,9 +165,10 @@ public class StaticScheme {
 
     /**
      * 手机号
+     *
      * @return Scheme
      */
-    public static Scheme chineseMobile(){
+    public static Scheme chineseMobile() {
         return new Scheme(new MobileVerifier()).msg("请输入有效的手机号");
     }
 
@@ -166,6 +178,7 @@ public class StaticScheme {
 
     /**
      * 固定电话号码
+     *
      * @return Scheme
      */
     public static Scheme chineseTelephone() {
@@ -175,6 +188,7 @@ public class StaticScheme {
 
     /**
      * 固定电话号码
+     *
      * @return Scheme
      */
     public static Scheme MAC() {
@@ -187,9 +201,10 @@ public class StaticScheme {
 
     /**
      * 为True状态
+     *
      * @return Scheme
      */
-    public static Scheme isTrue(){
+    public static Scheme isTrue() {
         return new Scheme(new BoolVerifier(true)).msg("当前项必须为True");
     }
 
@@ -199,21 +214,23 @@ public class StaticScheme {
 
     /**
      * 为False状态
+     *
      * @return Scheme
      */
-    public static Scheme isFalse(){
+    public static Scheme isFalse() {
         return new Scheme(new BoolVerifier(false)).msg("当前项必须为False");
     }
 
-    public static Scheme NumericLetters(){
+    public static Scheme NumericLetters() {
         return numericLetters();
     }
 
     /**
      * 数字和字母
+     *
      * @return Scheme
      */
-    public static Scheme numericLetters(){
+    public static Scheme numericLetters() {
         return new Scheme(new NumericLettersVerifier()).msg("请输入有效的数字和字母");
     }
 

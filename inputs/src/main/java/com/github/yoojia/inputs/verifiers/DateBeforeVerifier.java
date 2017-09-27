@@ -10,7 +10,7 @@ import java.util.Date;
  * @author Yoojia Chen (yoojiachen@gmail.com)
  * @since 1.7
  */
-public class DateBeforeVerifier extends DateAfterVerifier{
+public class DateBeforeVerifier extends DateAfterVerifier {
 
     public DateBeforeVerifier(Loader1A<Date> valueLoader) {
         super(valueLoader);

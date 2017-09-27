@@ -7,6 +7,7 @@ import static com.github.yoojia.inputs.Texts.regexMatch;
 
 /**
  * 非空值(包含制表符等)校验器
+ *
  * @author YOOJIA CHEN (yoojiachen@gmail.com)
  * @since 1.1
  */

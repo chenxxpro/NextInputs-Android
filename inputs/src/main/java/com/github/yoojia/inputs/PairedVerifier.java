@@ -14,37 +14,41 @@ public abstract class PairedVerifier<T> extends TypedVerifier<T> {
 
     public PairedVerifier(final T fixedFirstValue, final T fixedSecondValue) {
         this(new Loader2A<T>() {
-            @Override public T getFirstValue() {
+            @Override
+            public T getFirstValue() {
                 return fixedFirstValue;
             }
 
-            @Override public T getSecondValue() {
+            @Override
+            public T getSecondValue() {
                 return fixedSecondValue;
             }
         });
     }
 
-    final protected T benchmark1stValue(){
+    final protected T benchmark1stValue() {
         return mValueLoader.getFirstValue();
     }
 
-    final protected T benchmark2ndValue(){
+    final protected T benchmark2ndValue() {
         return mValueLoader.getSecondValue();
     }
 
     /**
      * 获取基准数值的消息对象数值A
+     *
      * @return 消息数值
      */
-    public Object benchmark1stValueForMessage(){
+    public Object benchmark1stValueForMessage() {
         return benchmark1stValue();
     }
 
     /**
      * 获取基准数值的消息对象数值B
+     *
      * @return 消息数值
      */
-    public Object benchmark2ndValueForMessage(){
+    public Object benchmark2ndValueForMessage() {
         return benchmark2ndValue();
     }
 }

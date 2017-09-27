@@ -21,15 +21,16 @@ public abstract class SingleVerifier<T> extends TypedVerifier<T> {
         };
     }
 
-    final protected T getBenchmarkValue(){
+    final protected T getBenchmarkValue() {
         return mValueLoader.getValue();
     }
 
     /**
      * 获取基准数值的消息对象数值
+     *
      * @return 消息数值
      */
-    public Object benchmarkValueForMessage(){
+    public Object benchmarkValueForMessage() {
         return getBenchmarkValue();
     }
 }

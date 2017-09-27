@@ -10,12 +10,13 @@ import android.widget.ToggleButton;
 
 /**
  * Inputs tool for Android widgets
+ *
  * @author 陈小锅 (yoojia.chen@gmail.com)
  * @since 1.4
  */
 public class WidgetProviders extends InputProviders {
 
-    public static TextInput<TextView> textView(TextView textView){
+    public static TextInput<TextView> textView(TextView textView) {
         return new TextInput<>(textView);
     }
 
@@ -37,7 +38,8 @@ public class WidgetProviders extends InputProviders {
 
     public static ViewInput<RatingBar> ratingBar(final RatingBar ratingBar) {
         return new ViewInput<RatingBar>(ratingBar) {
-            @Override public String getValue() {
+            @Override
+            public String getValue() {
                 return String.valueOf(ratingBar.getRating());
             }
         };
@@ -45,7 +47,8 @@ public class WidgetProviders extends InputProviders {
 
     public static ViewInput<CompoundButton> checkable(final CompoundButton checkable) {
         return new ViewInput<CompoundButton>(checkable) {
-            @Override public String getValue() {
+            @Override
+            public String getValue() {
                 return String.valueOf(checkable.isChecked());
             }
         };

@@ -35,28 +35,29 @@ public class NextInputs {
 
     /**
      * 执行校验测试，并返回测试结果。
+     *
      * @return 校验测试结果是否成功
      */
-    public boolean test(){
-        if(mInputSpecs.isEmpty()){
+    public boolean test() {
+        if (mInputSpecs.isEmpty()) {
             throw new IllegalArgumentException("No inputs and schemes to test");
         }
         InputSpec working = null;
-        try{
+        try {
             boolean passed = true;
             for (InputSpec spec : mInputSpecs) {
                 working = spec;
                 final Result r = perform(spec);
-                if(!r.passed) {
+                if (!r.passed) {
                     mMessageDisplay.show(working.input, r.message);
                     passed = false;
-                    if(mStopIfFail) {
+                    if (mStopIfFail) {
                         return false;
                     }
                 }
             }
             return passed;
-        }catch (Throwable thr) {
+        } catch (Throwable thr) {
             mMessageDisplay.show(working.input, thr.getMessage());
             return false;
         }
@@ -64,12 +65,13 @@ public class NextInputs {
 
     /**
      * 添加输入条目及测试模式。
-     * @param input 输入条目
+     *
+     * @param input   输入条目
      * @param schemes 测试模式
      * @return NextInputs
      */
-    public NextInputs add(Input input, Scheme... schemes){
-        if (schemes == null || schemes.length == 0){
+    public NextInputs add(Input input, Scheme... schemes) {
+        if (schemes == null || schemes.length == 0) {
             throw new IllegalArgumentException("Test schemes is required !");
         }
         Arrays.sort(schemes, ORDERING);
@@ -79,13 +81,14 @@ public class NextInputs {
 
     /**
      * 移除指定Input的校验条目
+     *
      * @param input Input对象
      * @return NextInputs
      */
     public NextInputs remove(Input input) {
         final List<InputSpec> toRemove = new ArrayList<>(1);
-        for(InputSpec spec: mInputSpecs) {
-            if(spec.input == input) {
+        for (InputSpec spec : mInputSpecs) {
+            if (spec.input == input) {
                 toRemove.add(spec);
             }
         }
@@ -95,30 +98,33 @@ public class NextInputs {
 
     /**
      * 清除所有校验条目
+     *
      * @return NextInputs
      */
-    public NextInputs clear(){
+    public NextInputs clear() {
         mInputSpecs.clear();
         return this;
     }
 
     /**
      * 在校验测试遇到失败时，是否停止校验
+     *
      * @param stopOnFail 是否停止
      * @return NextInputs
      */
-    public NextInputs setStopIfFail(boolean stopOnFail){
+    public NextInputs setStopIfFail(boolean stopOnFail) {
         mStopIfFail = stopOnFail;
         return this;
     }
 
     /**
      * 设置校验测试结果消息显示接口
+     *
      * @param display 消息显示接口。
-     * @throws NullPointerException 当参数为Null时，抛出异常。
      * @return NextInputs
+     * @throws NullPointerException 当参数为Null时，抛出异常。
      */
-    public NextInputs setMessageDisplay(MessageDisplay display){
+    public NextInputs setMessageDisplay(MessageDisplay display) {
         if (display == null) {
             throw new NullPointerException("MessageDisplay is null !");
         }
@@ -128,6 +134,7 @@ public class NextInputs {
 
     /**
      * 流式API
+     *
      * @param input Input对象
      * @return 流式API接口
      */
@@ -143,16 +150,16 @@ public class NextInputs {
                     rawInput;
             if (!scheme.verifier.perform(inputValue)) {
                 final String message;
-                if(scheme.verifier instanceof SingleVerifier){
+                if (scheme.verifier instanceof SingleVerifier) {
                     final SingleVerifier v = (SingleVerifier) scheme.verifier;
                     message = formatTplMessage(scheme.message,
                             v.benchmarkValueForMessage());
-                }else if(scheme.verifier instanceof PairedVerifier){
+                } else if (scheme.verifier instanceof PairedVerifier) {
                     final PairedVerifier v = (PairedVerifier) scheme.verifier;
                     message = formatTplMessage(scheme.message,
                             v.benchmark1stValueForMessage(),
                             v.benchmark2ndValueForMessage());
-                }else{
+                } else {
                     message = scheme.message;
                 }
                 return new Result(false, message);
@@ -161,10 +168,10 @@ public class NextInputs {
         return new Result(true, "PASSED");
     }
 
-    private static String formatTplMessage(String message, Object...args){
+    private static String formatTplMessage(String message, Object... args) {
         String output = message;
         for (int i = 0; i < args.length; i++) {
-            output = output.replace("{"+i+"}", args[i].toString());
+            output = output.replace("{" + i + "}", args[i].toString());
         }
         return output;
     }

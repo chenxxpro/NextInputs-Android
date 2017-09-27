@@ -6,6 +6,7 @@ import static com.github.yoojia.inputs.Texts.regexMatch;
 
 /**
  * 邮件地址校验器
+ *
  * @author Yoojia Chen (yoojiachen@gmail.com)
  * @since 1.1
  */

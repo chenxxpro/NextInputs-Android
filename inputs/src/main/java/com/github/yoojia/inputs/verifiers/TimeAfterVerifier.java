@@ -11,7 +11,7 @@ import java.util.Date;
  * @since 1.7
  */
 public class TimeAfterVerifier extends SingleDateTimeVerifier {
-    
+
     public TimeAfterVerifier(Loader1A<Date> valueLoader) {
         super(valueLoader, TIME_FORMAT);
     }

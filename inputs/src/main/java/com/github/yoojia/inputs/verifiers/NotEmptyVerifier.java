@@ -6,6 +6,7 @@ import static com.github.yoojia.inputs.Texts.isEmpty;
 
 /**
  * 非空校验器
+ *
  * @author YOOJIA CHEN (yoojiachen@gmail.com)
  * @since 1.1
  */
