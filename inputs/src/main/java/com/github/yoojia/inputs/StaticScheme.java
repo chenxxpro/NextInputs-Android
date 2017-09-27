@@ -11,6 +11,7 @@ import com.github.yoojia.inputs.verifiers.MACAddressVerifier;
 import com.github.yoojia.inputs.verifiers.MobileVerifier;
 import com.github.yoojia.inputs.verifiers.NotBlankVerifier;
 import com.github.yoojia.inputs.verifiers.NotEmptyVerifier;
+import com.github.yoojia.inputs.verifiers.NumericLettersVerifier;
 import com.github.yoojia.inputs.verifiers.NumericVerifier;
 import com.github.yoojia.inputs.verifiers.TelephoneVerifier;
 import com.github.yoojia.inputs.verifiers.URLVerifier;
@@ -202,6 +203,18 @@ public class StaticScheme {
      */
     public static Scheme isFalse(){
         return new Scheme(new BoolVerifier(false)).msg("当前项必须为False");
+    }
+
+    public static Scheme NumericLetters(){
+        return numericLetters();
+    }
+
+    /**
+     * 数字和字母
+     * @return Scheme
+     */
+    public static Scheme numericLetters(){
+        return new Scheme(new NumericLettersVerifier()).msg("请输入有效的数字和字母");
     }
 
 }

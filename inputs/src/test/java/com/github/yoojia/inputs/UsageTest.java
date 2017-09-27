@@ -13,19 +13,19 @@ public class UsageTest {
     public void test(){
         NextInputs inputs = new NextInputs();
         inputs.add(InputProviders.fixedString("yoojia"))
-                .with(StaticScheme.Required())
+                .with(StaticScheme.required())
 
                 .add(InputProviders.fixedString("yoojia.chen@gmail.com"))
-                .with(StaticScheme.Email())
+                .with(StaticScheme.email())
 
                 .add(InputProviders.fixedString("13800138000"))
-                .with(StaticScheme.ChineseMobile())
+                .with(StaticScheme.chineseMobile())
 
                 .add(InputProviders.fixedString("4121551474702170"))
-                .with(StaticScheme.BankCard())
+                .with(StaticScheme.bankCard())
 
                 .add(InputProviders.fixedString("2016-09-30"))
-                .with(ValueScheme.DateAfter("2016-09-21"));
+                .with(ValueScheme.dateAfter("2016-09-21"));
         Assert.assertTrue(inputs.test());
     }
 }
