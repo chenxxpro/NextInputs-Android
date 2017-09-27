@@ -19,38 +19,38 @@ final WidgetAccess access = new WidgetAccess(this);
 // 一、流式API
 inputs  // 必选，手机号
         .add(access.findEditText(R.id.form_field_1))
-        .with(StaticScheme.Required(), StaticScheme.ChineseMobile())
+        .with(StaticScheme.required(), StaticScheme.ChineseMobile())
         // 信用卡
         .add(access.findEditText(R.id.form_field_2))
-        .with(StaticScheme.BankCard());
+        .with(StaticScheme.bankCard());
 // 二、标准API
 // 必选，数字，最大20字符
-inputs.add(access.findEditText(R.id.form_field_3), StaticScheme.Required(), StaticScheme.Digits(), ValueScheme.MaxLength(20));
+inputs.add(access.findEditText(R.id.form_field_3), StaticScheme.required(), StaticScheme.Digits(), ValueScheme.MaxLength(20));
 // 必选，邮件
-inputs.add(access.findEditText(R.id.form_field_4), StaticScheme.Required(), StaticScheme.Email());
+inputs.add(access.findEditText(R.id.form_field_4), StaticScheme.required(), StaticScheme.Email());
 // 必选，与邮件相同
 final LazyLoaders loader = new LazyLoaders(this);
-inputs.add(access.findEditText(R.id.form_field_5), ValueScheme.Required(), ValueScheme.EqualsTo(loader.fromEditText(R.id.form_field_4)));
+inputs.add(access.findEditText(R.id.form_field_5), ValueScheme.required(), ValueScheme.EqualsTo(loader.fromEditText(R.id.form_field_4)));
 // Host
-inputs.add(access.findEditText(R.id.form_field_6), StaticScheme.Host());
+inputs.add(access.findEditText(R.id.form_field_6), StaticScheme.host());
 // URL
 inputs.add(access.findEditText(R.id.form_field_6), StaticScheme.URL());
 // MaxLength
-inputs.add(access.findEditText(R.id.form_field_7), ValueScheme.MaxLength(5));
+inputs.add(access.findEditText(R.id.form_field_7), ValueScheme.maxLength(5));
 // MinLength
-inputs.add(access.findEditText(R.id.form_field_8), ValueScheme.MinLength(4));
+inputs.add(access.findEditText(R.id.form_field_8), ValueScheme.minLength(4));
 // RangeLength
-inputs.add(access.findEditText(R.id.form_field_9), ValueScheme.RangeLength(4, 8));
+inputs.add(access.findEditText(R.id.form_field_9), ValueScheme.rangeLength(4, 8));
 // Not Blank
-inputs.add(access.findEditText(R.id.form_field_10), StaticScheme.NotBlank());
+inputs.add(access.findEditText(R.id.form_field_10), StaticScheme.notBlank());
 // Numeric
-inputs.add(access.findEditText(R.id.form_field_11), StaticScheme.Numeric());
+inputs.add(access.findEditText(R.id.form_field_11), StaticScheme.numeric());
 // MaxValue
-inputs.add(access.findEditText(R.id.form_field_12), ValueScheme.MaxValue(100));
+inputs.add(access.findEditText(R.id.form_field_12), ValueScheme.maxValue(100));
 // MinValue
-inputs.add(access.findEditText(R.id.form_field_13), ValueScheme.MinValue(20));
+inputs.add(access.findEditText(R.id.form_field_13), ValueScheme.minValue(20));
 // RangeValue
-inputs.add(access.findEditText(R.id.form_field_14), ValueScheme.RangeValue(18, 30));
+inputs.add(access.findEditText(R.id.form_field_14), ValueScheme.rangeValue(18, 30));
 
 
 final Button submit = (Button) findViewById(R.id.form_commit);
