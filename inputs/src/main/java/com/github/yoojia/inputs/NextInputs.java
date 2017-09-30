@@ -3,7 +3,8 @@ package com.github.yoojia.inputs;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * NextInputs
@@ -86,13 +87,13 @@ public class NextInputs {
      * @return NextInputs
      */
     public NextInputs remove(Input input) {
-        final List<InputSpec> toRemove = new ArrayList<>(1);
+        final Set<InputSpec> willRemove = new HashSet<>(1);
         for (InputSpec spec : mInputSpecs) {
             if (spec.input == input) {
-                toRemove.add(spec);
+                willRemove.add(spec);
             }
         }
-        mInputSpecs.removeAll(toRemove);
+        mInputSpecs.removeAll(willRemove);
         return this;
     }
 
