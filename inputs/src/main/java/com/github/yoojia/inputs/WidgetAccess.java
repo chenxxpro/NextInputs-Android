@@ -22,12 +22,19 @@ public class WidgetAccess {
 
     private final View mFormView;
 
+    private boolean mTrim = false;
+
     public WidgetAccess(View formView) {
         mFormView = formView;
     }
 
     public WidgetAccess(Activity activity) {
         this(activity.getWindow().getDecorView());
+    }
+
+    public WidgetAccess trim() {
+        mTrim = true;
+        return this;
     }
 
     public static String getString(TextView view) {
@@ -174,7 +181,17 @@ public class WidgetAccess {
         return WidgetProviders.checkable((CompoundButton) mFormView.findViewById(viewId));
     }
 
+    @SuppressWarnings("unchecked")
     public <T> T findView(int viewId) {
         return (T) mFormView.findViewById(viewId);
+    }
+
+    private String ifTrim(Object val) {
+        final String str = String.valueOf(val);
+        if (mTrim) {
+            return str.trim();
+        } else {
+            return str;
+        }
     }
 }
