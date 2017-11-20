@@ -103,7 +103,7 @@ public class AndroidNextInputs extends NextInputs {
     }
 
     @Override
-    public NextInputs remove(Input input) {
+    public AndroidNextInputs remove(Input input) {
         final Set<ViewInput> willRemove = new HashSet<>(1);
         for (ViewInput vi : mViewInputSet) {
             if (vi == input) {
@@ -111,14 +111,24 @@ public class AndroidNextInputs extends NextInputs {
             }
         }
         mViewInputSet.removeAll(willRemove);
-        return super.remove(input);
+        return (AndroidNextInputs) super.remove(input);
     }
 
     @Override
-    public NextInputs clear() {
+    public AndroidNextInputs clear() {
         resetAllErrors();
         mViewInputSet.clear();
-        return super.clear();
+        return (AndroidNextInputs) super.clear();
+    }
+
+    @Override
+    public AndroidNextInputs setStopIfFail(boolean stopOnFail) {
+        return (AndroidNextInputs) super.setStopIfFail(stopOnFail);
+    }
+
+    @Override
+    public AndroidNextInputs setMessageDisplay(MessageDisplay display) {
+        return (AndroidNextInputs) super.setMessageDisplay(display);
     }
 
     /**
