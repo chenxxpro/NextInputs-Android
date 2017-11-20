@@ -103,7 +103,7 @@ repositories {
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs-android:1.6-Final'
+    compile 'com.github.yoojia:next-inputs-android:1.7.0-ALPHA'
 }
 ```
 
@@ -111,7 +111,7 @@ dependencies {
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs-android:1.5'
+    compile 'com.github.yoojia:next-inputs-android:1.7.0-ALPHA'
 }
 ```
 
