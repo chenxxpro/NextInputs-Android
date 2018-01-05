@@ -57,4 +57,15 @@ public class Scheme {
         this.trimInput = false;
         return this;
     }
+
+    ////
+
+    public static Scheme create(Verifier verifier) {
+        return new Scheme(verifier);
+    }
+
+    public static Scheme create(Verifier verifier, String message) {
+        return new Scheme(verifier)
+                .msg(message);
+    }
 }

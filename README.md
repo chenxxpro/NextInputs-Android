@@ -15,58 +15,55 @@ Inputs校验核心模块，实现校验库的整体架构；
 
 ```java
 final AndroidNextInputs inputs = new AndroidNextInputs();
+// Inputs会保存各个规则，如果Inputs被Activity缓存，onCreate会多次调用。需要注意清除。
+inputs.clear();
+
 final WidgetAccess access = new WidgetAccess(this);
 // 一、流式API
 inputs  // 必选，手机号
         .add(access.findEditText(R.id.form_field_1))
-        .with(StaticScheme.required(), StaticScheme.ChineseMobile())
+        .with(StaticScheme.Required(), StaticScheme.ChineseMobile())
         // 信用卡
         .add(access.findEditText(R.id.form_field_2))
-        .with(StaticScheme.bankCard());
+        .with(StaticScheme.BankCard());
 // 二、标准API
 // 必选，数字，最大20字符
-inputs.add(access.findEditText(R.id.form_field_3), StaticScheme.required(), StaticScheme.Digits(), ValueScheme.MaxLength(20));
+inputs.add(access.findEditText(R.id.form_field_3), StaticScheme.Required(), StaticScheme.Digits(), ValueScheme.MaxLength(20));
 // 必选，邮件
-inputs.add(access.findEditText(R.id.form_field_4), StaticScheme.required(), StaticScheme.Email());
+inputs.add(access.findEditText(R.id.form_field_4), StaticScheme.Required(), StaticScheme.Email());
 // 必选，与邮件相同
 final LazyLoaders loader = new LazyLoaders(this);
-inputs.add(access.findEditText(R.id.form_field_5), ValueScheme.required(), ValueScheme.EqualsTo(loader.fromEditText(R.id.form_field_4)));
+inputs.add(access.findEditText(R.id.form_field_5), ValueScheme.Required(), ValueScheme.EqualsTo(loader.fromEditText(R.id.form_field_4)));
 // Host
-inputs.add(access.findEditText(R.id.form_field_6), StaticScheme.host());
+inputs.add(access.findEditText(R.id.form_field_6), StaticScheme.Host());
 // URL
 inputs.add(access.findEditText(R.id.form_field_6), StaticScheme.URL());
 // MaxLength
-inputs.add(access.findEditText(R.id.form_field_7), ValueScheme.maxLength(5));
+inputs.add(access.findEditText(R.id.form_field_7), ValueScheme.MaxLength(5));
 // MinLength
-inputs.add(access.findEditText(R.id.form_field_8), ValueScheme.minLength(4));
+inputs.add(access.findEditText(R.id.form_field_8), ValueScheme.MinLength(4));
 // RangeLength
-inputs.add(access.findEditText(R.id.form_field_9), ValueScheme.rangeLength(4, 8));
+inputs.add(access.findEditText(R.id.form_field_9), ValueScheme.RangeLength(4, 8));
 // Not Blank
-inputs.add(access.findEditText(R.id.form_field_10), StaticScheme.notBlank());
+inputs.add(access.findEditText(R.id.form_field_10), StaticScheme.NotBlank());
 // Numeric
-inputs.add(access.findEditText(R.id.form_field_11), StaticScheme.numeric());
+inputs.add(access.findEditText(R.id.form_field_11), StaticScheme.Numeric());
 // MaxValue
-inputs.add(access.findEditText(R.id.form_field_12), ValueScheme.maxValue(100));
+inputs.add(access.findEditText(R.id.form_field_12), ValueScheme.MaxValue(100));
 // MinValue
-inputs.add(access.findEditText(R.id.form_field_13), ValueScheme.minValue(20));
+inputs.add(access.findEditText(R.id.form_field_13), ValueScheme.MinValue(20));
 // RangeValue
-inputs.add(access.findEditText(R.id.form_field_14), ValueScheme.rangeValue(18, 30));
+inputs.add(access.findEditText(R.id.form_field_14), ValueScheme.RangeValue(18, 30));
 
-
-final Button submit = (Button) findViewById(R.id.form_commit);
-submit.setOnClickListener(new View.OnClickListener() {
+// 自定义校验规则
+// 1. 跟上面一样，指定需要校验的View；
+// 2. 通过Scheme.create方法，创建Verifier校验器，校验器实现具体的校验规则；
+inputs.add(access.findTextView(R.id.form_field_14), Scheme.create(new Verifier() {
     @Override
-    public void onClick(View v) {
-        boolean passed = inputs.test();
-        if (passed) {
-            submit.setText("校验通过");
-        }else{
-            submit.setText("校验失败");
-            access.findEditText(R.id.form_field_1).inputView.setText("12222");
-            access.findEditText(R.id.form_field_1).inputView.setError(null);
-        }
+    public boolean perform(String rawInput) throws Exception {
+        return "对输入内容进行自定义规则校验".equals(rawInput);
     }
-});
+}));
 
 ```
 
@@ -103,7 +100,7 @@ repositories {
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs-android:1.7.0-ALPHA'
+    compile 'com.github.yoojia:next-inputs-android:1.7.0-BETA'
 }
 ```
 
@@ -111,7 +108,7 @@ dependencies {
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs-android:1.7.0-ALPHA'
+    compile 'com.github.yoojia:next-inputs-android:1.7.0-BETA'
 }
 ```
 
@@ -124,6 +121,11 @@ dependencies {
 ![WeChat](./MyWeChat.jpg)
 
 # Change Log
+
+### 1.7.1 - 2017/01/05
+
+- 增加Schema.create创建自定义校验规则的接口；
+- 更新说明文档
 
 ### 1.7.0 - 2017/09/27
 
