@@ -14,12 +14,15 @@ import android.widget.ToggleButton;
 
 /**
  * 提供快速访问Android组件的工具类
+ *
  * @author 陈小锅 (yoojia.chen@gmail.com)
  * @since 1.4
  */
 public class WidgetAccess {
-    
+
     private final View mFormView;
+
+    private boolean mTrim = false;
 
     public WidgetAccess(View formView) {
         mFormView = formView;
@@ -29,11 +32,16 @@ public class WidgetAccess {
         this(activity.getWindow().getDecorView());
     }
 
+    public WidgetAccess trim() {
+        mTrim = true;
+        return this;
+    }
+
     public static String getString(TextView view) {
         final CharSequence value = view.getText();
         if (TextUtils.isEmpty(value)) {
             return null;
-        }else{
+        } else {
             return String.valueOf(value);
         }
     }
@@ -55,15 +63,15 @@ public class WidgetAccess {
     private static int parseInt(CharSequence input, int defaultValue) {
         if (TextUtils.isEmpty(input)) {
             return defaultValue;
-        }else{
-            try{
+        } else {
+            try {
                 return Integer.parseInt(input.toString());
-            }catch (Exception err) {
+            } catch (Exception err) {
                 return defaultValue;
             }
         }
     }
-    
+
     public static long getLong(TextView view, long defaultValue) {
         return parseLong(view.getText(), defaultValue);
     }
@@ -76,10 +84,10 @@ public class WidgetAccess {
     private static long parseLong(CharSequence input, long defaultValue) {
         if (TextUtils.isEmpty(input)) {
             return defaultValue;
-        }else{
-            try{
+        } else {
+            try {
                 return Long.parseLong(input.toString());
-            }catch (Exception err) {
+            } catch (Exception err) {
                 return defaultValue;
             }
         }
@@ -97,10 +105,10 @@ public class WidgetAccess {
     private static float parseFloat(CharSequence input, float defaultValue) {
         if (TextUtils.isEmpty(input)) {
             return defaultValue;
-        }else{
-            try{
+        } else {
+            try {
                 return Float.parseFloat(input.toString());
-            }catch (Exception err) {
+            } catch (Exception err) {
                 return defaultValue;
             }
         }
@@ -118,10 +126,10 @@ public class WidgetAccess {
     private static double parseDouble(CharSequence input, double defaultValue) {
         if (TextUtils.isEmpty(input)) {
             return defaultValue;
-        }else{
-            try{
+        } else {
+            try {
                 return Double.parseDouble(input.toString());
-            }catch (Exception err) {
+            } catch (Exception err) {
                 return defaultValue;
             }
         }
@@ -145,7 +153,7 @@ public class WidgetAccess {
         return bar.getProgress();
     }
 
-    public TextInput<TextView> findTextView(int viewId){
+    public TextInput<TextView> findTextView(int viewId) {
         return WidgetProviders.textView((TextView) mFormView.findViewById(viewId));
     }
 
@@ -173,7 +181,17 @@ public class WidgetAccess {
         return WidgetProviders.checkable((CompoundButton) mFormView.findViewById(viewId));
     }
 
-    public  <T> T findView(int viewId) {
+    @SuppressWarnings("unchecked")
+    public <T> T findView(int viewId) {
         return (T) mFormView.findViewById(viewId);
+    }
+
+    private String ifTrim(Object val) {
+        final String str = String.valueOf(val);
+        if (mTrim) {
+            return str.trim();
+        } else {
+            return str;
+        }
     }
 }

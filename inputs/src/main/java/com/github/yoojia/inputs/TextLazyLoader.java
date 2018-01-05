@@ -19,7 +19,7 @@ public class TextLazyLoader implements Loader1A<String> {
         return String.valueOf(mInput.getText());
     }
 
-    public static TextLazyLoader textView(TextView textView){
+    public static TextLazyLoader textView(TextView textView) {
         return new TextLazyLoader(textView);
     }
 

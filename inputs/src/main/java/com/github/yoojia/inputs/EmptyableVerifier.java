@@ -4,6 +4,7 @@ import static com.github.yoojia.inputs.Texts.isEmpty;
 
 /**
  * Allow empty input Verifier
+ *
  * @author 陈小锅 (yoojia.chen@gmail.com)
  */
 public abstract class EmptyableVerifier implements Verifier {
@@ -12,7 +13,7 @@ public abstract class EmptyableVerifier implements Verifier {
     public final boolean perform(String rawInput) throws Exception {
         if (isEmpty(rawInput)) {
             return true;
-        }else{
+        } else {
             return performTestNotEmpty(rawInput);
         }
     }

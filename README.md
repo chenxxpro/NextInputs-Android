@@ -15,6 +15,9 @@ Inputs校验核心模块，实现校验库的整体架构；
 
 ```java
 final AndroidNextInputs inputs = new AndroidNextInputs();
+// Inputs会保存各个规则，如果Inputs被Activity缓存，onCreate会多次调用。需要注意清除。
+inputs.clear();
+
 final WidgetAccess access = new WidgetAccess(this);
 // 一、流式API
 inputs  // 必选，手机号
@@ -52,21 +55,15 @@ inputs.add(access.findEditText(R.id.form_field_13), ValueScheme.MinValue(20));
 // RangeValue
 inputs.add(access.findEditText(R.id.form_field_14), ValueScheme.RangeValue(18, 30));
 
-
-final Button submit = (Button) findViewById(R.id.form_commit);
-submit.setOnClickListener(new View.OnClickListener() {
+// 自定义校验规则
+// 1. 跟上面一样，指定需要校验的View；
+// 2. 通过Scheme.create方法，创建Verifier校验器，校验器实现具体的校验规则；
+inputs.add(access.findTextView(R.id.form_field_14), Scheme.create(new Verifier() {
     @Override
-    public void onClick(View v) {
-        boolean passed = inputs.test();
-        if (passed) {
-            submit.setText("校验通过");
-        }else{
-            submit.setText("校验失败");
-            access.findEditText(R.id.form_field_1).inputView.setText("12222");
-            access.findEditText(R.id.form_field_1).inputView.setError(null);
-        }
+    public boolean perform(String rawInput) throws Exception {
+        return "对输入内容进行自定义规则校验".equals(rawInput);
     }
-});
+}));
 
 ```
 
@@ -103,7 +100,7 @@ repositories {
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs-android:1.6-Final'
+    compile 'com.github.yoojia:next-inputs-android:1.7.0-BETA'
 }
 ```
 
@@ -111,7 +108,7 @@ dependencies {
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs-android:1.5'
+    compile 'com.github.yoojia:next-inputs-android:1.7.0-BETA'
 }
 ```
 
@@ -124,6 +121,18 @@ dependencies {
 ![WeChat](./MyWeChat.jpg)
 
 # Change Log
+
+### 1.7.1 - 2017/01/05
+
+- 增加Schema.create创建自定义校验规则的接口；
+- 更新说明文档
+
+### 1.7.0 - 2017/09/27
+
+- 增加字母校验规则 letters;
+- 增加数字和字母校验规则 digitLetters;
+- 增加Trim处理;
+- 更新Scheme接口命名为小写;
 
 ### 1.6 - 2017/08/16
 

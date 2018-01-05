@@ -10,7 +10,7 @@ import java.util.Date;
  */
 class DateTimeKit {
 
-    static Date parse(String dateTimeString, SimpleDateFormat format){
+    static Date parse(String dateTimeString, SimpleDateFormat format) {
         try {
             return format.parse(dateTimeString);
         } catch (ParseException e) {
@@ -18,7 +18,7 @@ class DateTimeKit {
         }
     }
 
-    static String format(long dateTimeValue, SimpleDateFormat format){
+    static String format(long dateTimeValue, SimpleDateFormat format) {
         return format.format(new Date(dateTimeValue));
     }
 }

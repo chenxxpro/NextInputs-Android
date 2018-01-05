@@ -6,10 +6,12 @@ import android.view.View;
 import android.widget.Button;
 
 import com.github.yoojia.inputs.AndroidNextInputs;
-import com.github.yoojia.inputs.WidgetAccess;
 import com.github.yoojia.inputs.LazyLoaders;
+import com.github.yoojia.inputs.Scheme;
 import com.github.yoojia.inputs.StaticScheme;
 import com.github.yoojia.inputs.ValueScheme;
+import com.github.yoojia.inputs.Verifier;
+import com.github.yoojia.inputs.WidgetAccess;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final AndroidNextInputs inputs = new AndroidNextInputs();
+        // Inputs会保存各个规则，如果Inputs被Activity缓存，onCreate会多次调用。需要注意清除。
+        inputs.clear();
+
         final WidgetAccess access = new WidgetAccess(this);
         // 一、流式API
         inputs  // 必选，手机号
@@ -56,6 +61,16 @@ public class MainActivity extends AppCompatActivity {
         // RangeValue
         inputs.add(access.findEditText(R.id.form_field_14), ValueScheme.RangeValue(18, 30));
 
+        // 自定义校验规则:
+        // 1. 跟上面一样，指定需要校验的View；
+        // 2. 通过Scheme.create方法，创建Verifier校验器，校验器实现具体的校验规则；
+        Verifier myVerifier = new Verifier() {
+            @Override
+            public boolean perform(String rawInput) throws Exception {
+                return "对输入内容进行自定义规则校验".equals(rawInput);
+            }
+        };
+        inputs.add(access.findTextView(R.id.form_field_14), Scheme.create(myVerifier).msg("自动"));
 
         final Button submit = (Button) findViewById(R.id.form_commit);
         submit.setOnClickListener(new View.OnClickListener() {

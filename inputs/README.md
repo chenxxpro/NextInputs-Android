@@ -21,29 +21,19 @@
 // Android的数值加载方式，见另一项目：https://github.com/yoojia/NextInputs-Android
 NextInputs inputs = new NextInputs();
 inputs.add(InputProviders.fixedString("yoojia"))
-        .with(StaticScheme.Required())
+        .with(StaticScheme.required())
 
         .add(InputProviders.fixedString("yoojia.chen@gmail.com"))
-        .with(StaticScheme.Email())
+        .with(StaticScheme.email())
 
         .add(InputProviders.fixedString("13800138000"))
-        .with(StaticScheme.ChineseMobile())
+        .with(StaticScheme.chineseMobile())
 
         .add(InputProviders.fixedString("4121551474702170"))
-        .with(StaticScheme.BankCard());
+        .with(StaticScheme.bankCard());
 
 if(inputs.test()) {
     // Passed
-}
-```
-
-----
-
-## 配置 Gradle 依赖
-
-```groovy
-dependencies {
-    compile 'com.github.yoojia:next-inputs:1.8'
 }
 ```
 
@@ -64,6 +54,8 @@ NextInputs目前内置包含以下静态校验模式，在未来版本也会加�
 - Host - 域名模式
 - URL - URL地址模式
 - Numeric - 数值模式
+- Letters - 字母模式
+- DigitLetters - 数字字母模式
 - BankCard - 银行卡/信用卡号码模式
 - ChineseIDCard 身份证号码模式
 - ChineseMobile 手机号码模式（国内）
@@ -87,47 +79,55 @@ NextInputs目前内置包含以下静态校验模式，在未来版本也会加�
 
 > 设置Required模式后，输入内容不能是任何空值，也是NextInputs不允许空值的两条校验规则之一
 
-`StaticScheme.Required()`，输入内容不能为任何空数据，除空数据外，还包括任意数量的纯空格、制表符等。
+`StaticScheme.required()`，输入内容不能为任何空数据，除空数据外，还包括任意数量的纯空格、制表符等。
 
 #### Digits - 数字模式
 
-`StaticScheme.Digits()`，输入内容只能是纯数字。
+`StaticScheme.digits()`，输入内容只能是纯数字。
 
 #### Email - 邮件地址模式
 
-`StaticScheme.Email()`，输入内容必须是有效的电子邮件地址。
+`StaticScheme.email()`，输入内容必须是有效的电子邮件地址。
 
 #### IPv4 - IP地址模式
 
-`StaticScheme.IPv4()`，输入内容必须是有效的IPv4地址。
+`StaticScheme.ipv4()`，输入内容必须是有效的IPv4地址。
 
 #### Host - 主机地址模式
 
-`StaticScheme.Host()`，输入内容必须是有效的主机地址。这个模块包含了IPv4的校验。
+`StaticScheme.host()`，输入内容必须是有效的主机地址。这个模块包含了IPv4的校验。
 
 #### URL - URL地址模式
 
-`StaticScheme.URL()`，输入内容必须是有效的URL地址。
+`StaticScheme.url()`，输入内容必须是有效的URL地址。
 
 #### Numeric - 数值模式
 
-`StaticScheme.Numeric()`，输入内容必须是有效的数值。
+`StaticScheme.numeric()`，输入内容必须是有效的数值。
+
+#### Letters - 数值模式
+
+`StaticScheme.letters()`，输入内容必须是有效的大小写字母。
+
+#### DigitLetters - 数值模式
+
+`StaticScheme.digitLetters()`，输入内容必须是有效的大小写字母和数字。
 
 #### BankCard - 银行卡/信用卡号码模式
 
-`StaticScheme.BankCard()`，输入内容必须是有效的银行卡号或者信用卡号。这个模式在实现上，使用银行卡号校验算法（Luhn）来校验，可以支持13位到19位长度的有效卡号。
+`StaticScheme.bankCard()`，输入内容必须是有效的银行卡号或者信用卡号。这个模式在实现上，使用银行卡号校验算法（Luhn）来校验，可以支持13位到19位长度的有效卡号。
 
 #### ChineseIDCard 身份证号码模式
 
-`StaticScheme.ChineseIDCard()`，输入内容必须是有效的中国居民身份证号码。这个模式支持15位和18位身份证号的校验。
+`StaticScheme.chineseIDCard()`，输入内容必须是有效的中国居民身份证号码。这个模式支持15位和18位身份证号的校验。
 
 #### ChineseMobile 手机号码模式（国内手机号）
 
-`StaticScheme.ChineseMobile()`，输入内容必须是有效的手机号。这个手机号必须是11位国内手机号，其它国家或者地区的手机号暂不支持。
+`StaticScheme.chineseMobile()`，输入内容必须是有效的手机号。这个手机号必须是11位国内手机号，其它国家或者地区的手机号暂不支持。
 
 #### ChineseTelephone 固定电话号码模式（国内）
 
-`StaticScheme.ChineseMobile()`，输入内容必须是有效的固定电话号码。其它国家或者地区的手机号暂不支持。
+`StaticScheme.chineseMobile()`，输入内容必须是有效的固定电话号码。其它国家或者地区的手机号暂不支持。
 
 #### MAC 设备物理地址（MAC Address）模式
 
@@ -135,11 +135,11 @@ NextInputs目前内置包含以下静态校验模式，在未来版本也会加�
 
 #### IsTrue - 结果为True模式
 
-`StaticScheme.IsTrue()`，输入内容必须是True值。通常用于校验RadioBotton或者CheckBox等。
+`StaticScheme.isTrue()`，输入内容必须是True值。通常用于校验RadioButton或者CheckBox等。
 
 #### IsFalse - 结果为False模式
 
-`StaticScheme.IsFalse()`，输入内容必须是False值。通常用于校验RadioBotton或者CheckBox等。
+`StaticScheme.isFalse()`，输入内容必须是False值。通常用于校验RadioButton或者CheckBox等。
 
 ----
 
@@ -174,12 +174,12 @@ NextInputs目前内置包含以下几种数值校验模式，在未来版本也�
 
 在ValueScheme模式中，所有模式都需要一个基准数值来作为后续数值的判断标准。如“ValueScheme.MinLength”模式，如果直接指定**固定**数值：
 
-> ValueScheme.MinLength(10)
+> ValueScheme.minLength(10)
 
 则表示立即设定最小长度模式的基准长度为10。在很多情况下，这个基准数值并非即时获取，需要从另一个对象中动态加载。这种情况下，需要使用延迟加载接口来实现：
 
 ```java
-ValueScheme.MinLength(new Loader1A<Long> {
+ValueScheme.minLength(new Loader1A<Long> {
   public Long getValue(){
     return Spinner.getValue();// 假定最小长度基准值由Spinner来设定。
   }
@@ -188,76 +188,76 @@ ValueScheme.MinLength(new Loader1A<Long> {
 
 #### Required -  必填项目
 
-`ValueScheme.Required()`，与StaticScheme.Required相同。
+`ValueScheme.required()`，与StaticScheme.Required相同。
 
 #### MinLength - 最小内容长度
 
-`ValueScheme.MinLength(minLength)`，输入内容的长度至少（包括）为指定长度。
+`ValueScheme.minLength(minLength)`，输入内容的长度至少（包括）为指定长度。
 
 #### MaxLength - 最多内容长度
 
-`ValueScheme.MaxLength(maxLength)`，输入内容的长度最大（包括）为指定长度。
+`ValueScheme.maxLength(maxLength)`，输入内容的长度最大（包括）为指定长度。
 
 #### RangeLength - 内容长度在指定范围内
 
-`ValueScheme.RangeLength(minLength, maxLength)`，输入内容的长度在指定范围内。
+`ValueScheme.rangeLength(minLength, maxLength)`，输入内容的长度在指定范围内。
 
 #### MinValue - 最小值
 
-`ValueScheme.MinValue(minValue)`，输入数值最小（包括）为指定数值。支持的数值类型：Int、Long、Float、Double；
+`ValueScheme.minValue(minValue)`，输入数值最小（包括）为指定数值。支持的数值类型：Int、Long、Float、Double；
 
 #### MaxValue - 最大值
 
-`ValueScheme.MaxValue(minValue)`，输入数值最大（包括）为指定数值。支持的数值类型：Int、Long、Float、Double；
+`ValueScheme.maxValue(minValue)`，输入数值最大（包括）为指定数值。支持的数值类型：Int、Long、Float、Double；
 
 #### RangeValue - 数值范围
 
-`ValueScheme.RangeValue(minValue, maxValue)`，输入数值在（包括）指定数值范围内。支持的数值类型：Int、Long、Float、Double；
+`ValueScheme.rangeValue(minValue, maxValue)`，输入数值在（包括）指定数值范围内。支持的数值类型：Int、Long、Float、Double；
 
 #### Equals - 与指定内容相同
 
-`ValueScheme.Equals(...)`，输入内容与指定内容相同。Equals有两个实现方式，一个是`Equals(Loader<String>)`，另一个是`Equals(fixedString)`；
+`ValueScheme.equals(...)`，输入内容与指定内容相同。Equals有两个实现方式，一个是`Equals(Loader<String>)`，另一个是`Equals(fixedString)`；
 
-- `Equals(Loader<String>)`，延迟加载参数形式。当开始校验时，Loader的`getValue`方法才会被执行，并要求返回一个用于匹配输入内容的字符串；
-- `Equals(fixedString)`，与指定固定字符串相同；
+- `equals(Loader<String>)`，延迟加载参数形式。当开始校验时，Loader的`getValue`方法才会被执行，并要求返回一个用于匹配输入内容的字符串；
+- `equals(fixedString)`，与指定固定字符串相同；
 
 #### NotEquals - 与指定内容不相同
 
 方式与`ValueScheme.Equals`相同，判断方式取反。
 
-#### DateBefore - 在指定日期之前
+#### dateBefore - 在指定日期之前
 
 校验输入的日期字符串要求符合`yyyy-MM-dd`格式，指定日期同上，也可以传入Date对象。
 
-#### DateAfter - 在指定日期之后
+#### dateAfter - 在指定日期之后
 
 校验输入的日期字符串要求符合`yyyy-MM-dd`格式，指定日期同上，也可以传入Date对象。
 
-#### RangeDate - 在指定日期内
+#### rangeDate - 在指定日期内
 
 校验输入的日期字符串要求符合`yyyy-MM-dd`格式，指定日期同上，也可以传入Date对象。
 
-#### DateTimeBefore - 在指定日期时间之前
+#### rateTimeBefore - 在指定日期时间之前
 
 校验输入的日期时间字符串要求符合`yyyy-MM-dd HH:mm:ss`格式，指定日期时间同上，也可以传入Date对象。
 
-#### DateTimeAfter - 在指定日期时间之后
+#### dateTimeAfter - 在指定日期时间之后
 
 校验输入的日期时间字符串要求符合`yyyy-MM-dd HH:mm:ss`格式，指定日期时间同上，也可以传入Date对象。
 
-#### RangeDateTime  - 在指定日期时间内
+#### rangeDateTime  - 在指定日期时间内
 
 校验输入的日期时间字符串要求符合`yyyy-MM-dd HH:mm:ss`格式，指定日期时间同上，也可以传入Date对象。
 
-#### TimeBefore - 在指定时间之前
+#### timeBefore - 在指定时间之前
 
 校验输入的日期时间字符串要求符合`HH:mm:ss`格式，指定日期时间同上，也可以传入Date对象。
 
-#### TimeAfter - 在指定时间之后
+#### timeAfter - 在指定时间之后
 
 校验输入的日期时间字符串要求符合`HH:mm:ss`格式，指定日期时间同上，也可以传入Date对象。
 
-#### RangeTime - 在指定时间内
+#### rangeTime - 在指定时间内
 
 校验输入的日期时间字符串要求符合`HH:mm:ss`格式，指定日期时间同上，也可以传入Date对象。
 
@@ -286,71 +286,23 @@ NextInputs对输入数据空值字符串的定义是：
 ```
 input == null || input.length() == 0
 ```
-----
 
-# 版本更新
+## 输入内容的Trim处理
 
-##### 1.8.2
+> scheme.trimInput() / scheme.dontTrim();
 
-- 电话号码校验模块，增加对工信部最近发放的199,166,198新号段支持；
+在大部分Scheme中，都会在获取原始输入内容的时候，做Trim处理，再做校验。
 
-##### 1.8
+而以下Scheme默认不做Trim处理：
 
-- 增加Date/Time/DateTime校验模式；
-- ValueScheme的校验模式均增加Loader接口，以用于延迟获取校验基准数值。
-- Scheme的提示消息接口：msg(String) / msgOnFail(String)，增加模板功能。使用{0}/{1}等可动态替换对应的基准数值。
-
-##### 1.7
-
-- 增加固定电话校验模式：ChineseTelephone
-- 增加MAC物理地址校验模式：MAC
-
-##### 1.6.2
-
-- 更新手机号验证正则表达式；
-- 增加FixedLength校验；
-- 更新内部类名及包名；
-- 增加clear()方法，用于移除全部校验条目；
-- 修正BankCard拼写错误问题；
-
-##### 1.5.3
-
-- 使用 Provider 替代 Inputs 工具类
-
-##### 1.5
-
-- Schema 修正为 Scheme
-
-##### 1.4.1
-
-- 修正ValueScheme的RangeValue参数错误；
-
-##### 1.4
-
-- Pattern，StaticPattern，ValuePattern 标识为 @@Deprecated，并重命名为：Scheme, StaticScheme, ValueScheme
-
-##### 1.3
-
-- 增加流式API处理；
-
-##### 1.1
-
-- 更新各个校验模式的内部实现,分离其Tester；
-- ValueScheme 修改为 ValueScheme
-- ValueScheme.EqualsTo() 修改为 ValueScheme.Equals()；
-- ValueScheme.NotEqualsTo() 修改为 ValueScheme.NotEquals()；
-- ABTestBridge 更改为 ABBridge；
-- AbstractTester 更改为 Verifier；
-- Loader 更改为 LazyLoader；
-- AllowEmptyTester 更改为 EmptyableVerifier；
-- Loader 及 ABBridge 的onValue方法修改为 getValueX() 的形式；
+- required()
+- notBlank()
 
 ----
-
 
 # License
 
-    Copyright 2015-2016 Yoojia Chen
+    Copyright 2015-2017 Yoojia Chen
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

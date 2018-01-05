@@ -24,6 +24,6 @@ public class FixedLengthVerifier extends SingleVerifier<Long> {
 
     @Override
     protected Long typedCast(String notEmptyInput) {
-        return (long)notEmptyInput.length();
+        return (long) notEmptyInput.length();
     }
 }

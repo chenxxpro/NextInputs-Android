@@ -9,75 +9,145 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+
+import static com.github.yoojia.inputs.WidgetProviders.checkBox;
+import static com.github.yoojia.inputs.WidgetProviders.checkable;
+import static com.github.yoojia.inputs.WidgetProviders.editText;
+import static com.github.yoojia.inputs.WidgetProviders.radioButton;
+import static com.github.yoojia.inputs.WidgetProviders.ratingBar;
+import static com.github.yoojia.inputs.WidgetProviders.textView;
+import static com.github.yoojia.inputs.WidgetProviders.toggleButton;
 
 /**
  * An Android wrapper for NextInputs
+ *
  * @author 陈小锅 (yoojia.chen@gmail.com)
  * @since 1.0
  */
 public class AndroidNextInputs extends NextInputs {
 
-    private final Set<ViewInput> inputs = new HashSet<>();
+    private final Set<ViewInput> mViewInputSet = new HashSet<>();
 
     public AndroidNextInputs() {
         setMessageDisplay(new AndroidMessageDisplay());
     }
 
-    public AndroidNextInputs add(TextView input, Scheme...schemes){
-        addViewInput(WidgetProviders.textView(input), schemes);
+    public AndroidNextInputs add(TextView input, Scheme... schemes) {
+        addViewInput(textView(input), schemes);
         return this;
     }
 
-    public AndroidNextInputs add(EditText input, Scheme...schemes){
-        addViewInput(WidgetProviders.editText(input), schemes);
+    public AndroidNextInputs add(EditText input, Scheme... schemes) {
+        addViewInput(editText(input), schemes);
         return this;
     }
 
-    public AndroidNextInputs add(RadioButton input, Scheme...schemes){
-        addViewInput(WidgetProviders.radioButton(input), schemes);
+    public AndroidNextInputs add(RadioButton input, Scheme... schemes) {
+        addViewInput(radioButton(input), schemes);
         return this;
     }
 
-    public AndroidNextInputs add(ToggleButton input, Scheme...schemes){
-        addViewInput(WidgetProviders.toggleButton(input), schemes);
+    public AndroidNextInputs add(ToggleButton input, Scheme... schemes) {
+        addViewInput(toggleButton(input), schemes);
         return this;
     }
 
-    public AndroidNextInputs add(CheckBox input, Scheme...schemes){
-        addViewInput(WidgetProviders.checkBox(input), schemes);
+    public AndroidNextInputs add(CheckBox input, Scheme... schemes) {
+        addViewInput(checkBox(input), schemes);
         return this;
     }
 
-    public AndroidNextInputs add(RatingBar input, Scheme...schemes){
-        addViewInput(WidgetProviders.ratingBar(input), schemes);
+    public AndroidNextInputs add(RatingBar input, Scheme... schemes) {
+        addViewInput(ratingBar(input), schemes);
         return this;
     }
 
-    public AndroidNextInputs add(CompoundButton input, Scheme...schemes){
-        addViewInput(WidgetProviders.checkable(input), schemes);
+    public AndroidNextInputs add(CompoundButton input, Scheme... schemes) {
+        addViewInput(checkable(input), schemes);
         return this;
     }
-    
+
     public AndroidNextInputs remove(View view) {
-        final List<ViewInput> toRemove = new ArrayList<>();
-        for(ViewInput vi : inputs) {
-            if(vi.inputView == view) {
-                toRemove.add(vi);
+        final Set<ViewInput> willRemove = new HashSet<>(1);
+        for (ViewInput vi : mViewInputSet) {
+            if (vi.inputView == view) {
+                willRemove.add(vi);
             }
         }
-        for (ViewInput remove: toRemove) {
-            inputs.remove(remove);
-            super.remove(remove);
+        for (ViewInput input : willRemove) {
+            mViewInputSet.remove(input);
+            super.remove(input);
         }
         return this;
     }
-    
-    private void addViewInput(ViewInput input, Scheme...schemes) {
-        inputs.add(input);
+
+    @Override
+    public NextInputs add(Input input, Scheme... schemes) {
+        addViewInputToCache(input);
+        return super.add(input, schemes);
+    }
+
+    @Override
+    public Fluent add(Input input) {
+        addViewInputToCache(input);
+        return super.add(input);
+    }
+
+    @Override
+    public boolean test() {
+        // Android端在测试前先重置所有出错信息
+        resetAllErrors();
+        return super.test();
+    }
+
+    @Override
+    public AndroidNextInputs remove(Input input) {
+        final Set<ViewInput> willRemove = new HashSet<>(1);
+        for (ViewInput vi : mViewInputSet) {
+            if (vi == input) {
+                willRemove.add(vi);
+            }
+        }
+        mViewInputSet.removeAll(willRemove);
+        return (AndroidNextInputs) super.remove(input);
+    }
+
+    @Override
+    public AndroidNextInputs clear() {
+        resetAllErrors();
+        mViewInputSet.clear();
+        return (AndroidNextInputs) super.clear();
+    }
+
+    @Override
+    public AndroidNextInputs setStopIfFail(boolean stopOnFail) {
+        return (AndroidNextInputs) super.setStopIfFail(stopOnFail);
+    }
+
+    @Override
+    public AndroidNextInputs setMessageDisplay(MessageDisplay display) {
+        return (AndroidNextInputs) super.setMessageDisplay(display);
+    }
+
+    /**
+     * 重置所有出错提示
+     */
+    public void resetAllErrors(){
+        for (ViewInput v : mViewInputSet){
+            AndroidMessageDisplay.setErrorMessageOnTextView(v.inputView, null);
+        }
+    }
+
+    private void addViewInput(ViewInput input, Scheme... schemes) {
+        addViewInputToCache(input);
         super.add(input, schemes);
+    }
+
+    private void addViewInputToCache(Input input){
+        if (input instanceof ViewInput){
+            mViewInputSet.add((ViewInput) input);
+        }
     }
 }

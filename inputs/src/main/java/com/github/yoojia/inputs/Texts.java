@@ -3,13 +3,13 @@ package com.github.yoojia.inputs;
 import java.util.regex.Pattern;
 
 /**
- *
  * @author 陈小锅 (yoojia.chen@gmail.com)
  */
 public final class Texts {
 
     /**
      * Is char sequence empty
+     *
      * @param value Value
      * @return is empty
      */
@@ -19,6 +19,7 @@ public final class Texts {
 
     /**
      * If input matched regex
+     *
      * @param input Input String
      * @param regex Regex
      * @return is matched

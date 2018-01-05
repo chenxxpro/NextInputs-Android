@@ -8,7 +8,8 @@ public class InputProviders {
 
     public static Input fixedString(final String fixedValue) {
         return new Input() {
-            @Override public String getValue() {
+            @Override
+            public String getValue() {
                 return fixedValue;
             }
         };

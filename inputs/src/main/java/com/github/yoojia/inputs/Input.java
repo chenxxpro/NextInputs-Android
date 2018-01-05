@@ -9,6 +9,7 @@ public interface Input {
 
     /**
      * 从输入数据源中获取输入文本数据
+     *
      * @return String value
      */
     String getValue();

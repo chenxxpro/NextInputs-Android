@@ -4,6 +4,7 @@ import com.github.yoojia.inputs.EmptyableVerifier;
 
 /**
  * 数字校验器
+ *
  * @author Yoojia Chen (yoojia.chen@gmail.com)
  * @since 1.0
  */
@@ -14,7 +15,7 @@ public class NumericVerifier extends EmptyableVerifier {
         return isNumeric(input);
     }
 
-    public static boolean isNumeric(String input){
+    public static boolean isNumeric(String input) {
         char[] chars = input.toCharArray();
         int sz = chars.length;
         boolean hasExp = false;

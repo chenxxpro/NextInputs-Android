@@ -6,7 +6,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 /**
- *
  * @author 陈小锅 (yoojia.chen@gmail.com)
  * @since 1.0
  */
@@ -22,7 +21,7 @@ public class LazyLoaders {
         this(activity.getWindow().getDecorView());
     }
 
-    public TextLazyLoader fromTextView(int viewId){
+    public TextLazyLoader fromTextView(int viewId) {
         return new TextLazyLoader((TextView) mFormView.findViewById(viewId));
     }
 
