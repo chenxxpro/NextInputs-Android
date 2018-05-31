@@ -1,6 +1,7 @@
-# 项目结构
 
-![NextInputs](./NextInputs.jpg)
+> NextInputs-Android 是一个为Android表单实现的校验库，它提供了非常丰富的接口和内置组件，可以为你方便快捷地接入表单校验功能。
+
+# 项目结构
 
 - `inputs` Inputs校验核心模块，实现校验库的整体架构；见: [Inputs](./inputs/README.md)
 - `android` Android 外壳模块，针对Android平台的组件访问做支持；
@@ -55,7 +56,7 @@ repositories {
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs-android:1.7.1'
+    compile 'com.github.yoojia:next-inputs-android:1.7.2'
 }
 ```
 
@@ -63,7 +64,7 @@ dependencies {
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs-android:1.7.1'
+    compile 'com.github.yoojia:next-inputs-android:1.7.2'
 }
 ```
 
@@ -100,7 +101,7 @@ dependencies {
 - 移除AndroidInputs类；
 - 移除InputsAccess类；
 
-### 2016/12/16 - 1.4
+### 1.4 - 2016/12/16
 
 - 更新NextInputs版本为1.8；
 - 修正BankCard拼写错误；
@@ -153,7 +154,7 @@ dependencies {
 
 # License
 
-    Copyright 2015-2016 Yoojia Chen
+    Copyright 2015-2018 Yoojia Chen
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
