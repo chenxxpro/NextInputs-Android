@@ -13,59 +13,9 @@ Inputs校验核心模块，实现校验库的整体架构；
 
 # 使用示例
 
-```java
-final AndroidNextInputs inputs = new AndroidNextInputs();
-// Inputs会保存各个规则，如果Inputs被Activity缓存，onCreate会多次调用。需要注意清除。
-inputs.clear();
+详细的使用示例源文件，可以参考本项目演示代码：[MainActivity](./app/src/main/java/com/github/yoojia/inputs/app/MainActivity.java)
 
-final WidgetAccess access = new WidgetAccess(this);
-// 一、流式API
-inputs  // 必选，手机号
-        .add(access.findEditText(R.id.form_field_1))
-        .with(StaticScheme.Required(), StaticScheme.ChineseMobile())
-        // 信用卡
-        .add(access.findEditText(R.id.form_field_2))
-        .with(StaticScheme.BankCard());
-// 二、标准API
-// 必选，数字，最大20字符
-inputs.add(access.findEditText(R.id.form_field_3), StaticScheme.Required(), StaticScheme.Digits(), ValueScheme.MaxLength(20));
-// 必选，邮件
-inputs.add(access.findEditText(R.id.form_field_4), StaticScheme.Required(), StaticScheme.Email());
-// 必选，与邮件相同
-final LazyLoaders loader = new LazyLoaders(this);
-inputs.add(access.findEditText(R.id.form_field_5), ValueScheme.Required(), ValueScheme.EqualsTo(loader.fromEditText(R.id.form_field_4)));
-// Host
-inputs.add(access.findEditText(R.id.form_field_6), StaticScheme.Host());
-// URL
-inputs.add(access.findEditText(R.id.form_field_6), StaticScheme.URL());
-// MaxLength
-inputs.add(access.findEditText(R.id.form_field_7), ValueScheme.MaxLength(5));
-// MinLength
-inputs.add(access.findEditText(R.id.form_field_8), ValueScheme.MinLength(4));
-// RangeLength
-inputs.add(access.findEditText(R.id.form_field_9), ValueScheme.RangeLength(4, 8));
-// Not Blank
-inputs.add(access.findEditText(R.id.form_field_10), StaticScheme.NotBlank());
-// Numeric
-inputs.add(access.findEditText(R.id.form_field_11), StaticScheme.Numeric());
-// MaxValue
-inputs.add(access.findEditText(R.id.form_field_12), ValueScheme.MaxValue(100));
-// MinValue
-inputs.add(access.findEditText(R.id.form_field_13), ValueScheme.MinValue(20));
-// RangeValue
-inputs.add(access.findEditText(R.id.form_field_14), ValueScheme.RangeValue(18, 30));
-
-// 自定义校验规则
-// 1. 跟上面一样，指定需要校验的View；
-// 2. 通过Scheme.create方法，创建Verifier校验器，校验器实现具体的校验规则；
-inputs.add(access.findTextView(R.id.form_field_14), Scheme.create(new Verifier() {
-    @Override
-    public boolean perform(String rawInput) throws Exception {
-        return "对输入内容进行自定义规则校验".equals(rawInput);
-    }
-}));
-
-```
+![](./java-demo.png)
 
 # Android扩展
 
@@ -114,15 +64,15 @@ dependencies {
 
 ----
 
-# 问题与交流
+# 版本更新记录 - Change Log
 
-关于本项目你有任何问题，可以加微信与我联系（抱歉，没有QQ群）：
+### 1.7.2 - 2018/05/31
 
-![WeChat](./MyWeChat.jpg)
+- 添加License文件；
+- TextInput增加Filter方法；
+- 更新Readme
 
-# Change Log
-
-### 1.7.1 - 2017/01/05
+### 1.7.1 - 2018/01/05
 
 - 增加Schema.create创建自定义校验规则的接口；
 - 更新说明文档

@@ -15,7 +15,10 @@ public class TextInput<T extends TextView> extends ViewInput<T> {
 
     @Override
     public String getValue() {
-        return String.valueOf(inputView.getText());
+        return filterValue(String.valueOf(inputView.getText()));
     }
 
+    protected String filterValue(String text) {
+        return text;
+    }
 }
