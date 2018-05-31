@@ -5,6 +5,11 @@
 - `inputs` Inputs校验核心模块，实现校验库的整体架构；见: [Inputs](./inputs/README.md)
 - `android` Android 外壳模块，针对Android平台的组件访问做支持；
 
+# 项目地址
+
+- [OSChina项目地址](https://gitee.com/yoojia/NextInput-Android)
+- [GitHub项目地址](https://github.com/yoojia/NextInputs-Android)
+
 # NextInputs
 
 Inputs校验核心模块，实现校验库的整体架构；
